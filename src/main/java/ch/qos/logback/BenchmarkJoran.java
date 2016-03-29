@@ -31,33 +31,64 @@
 
 package ch.qos.logback;
 
+import org.junit.Test;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.State;
 
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.core.joran.spi.JoranException;
 
+/**
 
+ java -jar target/benchmarks.jar '.*BenchmarkJoran' -wi 0 -i 3 -tu us
 
-// Benchmark                        Mode  Cnt     Score     Error  Units
-// BenchmarkJoran.testShortConfig  thrpt   50  1640.260 ± 248.666  ops/s
+Benchmark                                      Mode  Cnt      Score       Error  Units
+BenchmarkJoran.testPropertySetterLongerConfig    ss   30  43885.034 ± 32561.156  us/op
+BenchmarkJoran.testPropertySetterShortConfig     ss   30  33825.291 ± 29224.442  us/op
+singleShotPropertySetterLongerConfig time in us:19526
 
-@State(Scope.Benchmark)
+Using java.beans.Introspector 
+Benchmark                                      Mode  Cnt      Score       Error  Units
+BenchmarkJoran.testPropertySetterLongerConfig    ss   30  49013.013 ± 37679.223  us/op
+BenchmarkJoran.testPropertySetterShortConfig     ss   30  35981.958 ± 31635.148  us/op
+ 10 iterations avg. time: 20605 us
+*/
+
+//@State(Scope.Benchmark)
 public class BenchmarkJoran {
 
-    LoggerContext loggerContext = new LoggerContext();
-    
     @Benchmark
-    @BenchmarkMode(Mode.Throughput)
+    @BenchmarkMode(Mode.SingleShotTime)
     public void testPropertySetterShortConfig() throws JoranException {
-        
+        LoggerContext loggerContext = new LoggerContext();
         JoranConfigurator joran = new JoranConfigurator();
         joran.setContext(loggerContext);
         joran.doConfigure("src/main/resources/logback-short.xml");
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.SingleShotTime)
+    public void testPropertySetterLongerConfig() throws JoranException {
+        LoggerContext loggerContext = new LoggerContext();
+        JoranConfigurator joran = new JoranConfigurator();
+        joran.setContext(loggerContext);
+        joran.doConfigure("src/main/resources/logback-twoAppenders.xml");
+    }
+
+    @Test
+    public void singleShotPropertySetterLongerConfig() throws JoranException {
+        long start = System.nanoTime();
+        int count = 10;
+        for (int i = 0; i < count; i++) {
+            LoggerContext loggerContext = new LoggerContext();
+            JoranConfigurator joran = new JoranConfigurator();
+            joran.setContext(loggerContext);
+            joran.doConfigure("src/main/resources/logback-twoAppenders.xml");
+        }
+        long end = System.nanoTime();
+        System.out.println("singleShotPropertySetterLongerConfig time in us:" + (end - start) / (count*1000));
     }
 
 }

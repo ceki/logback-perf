@@ -1,4 +1,4 @@
-<configuration debug="true">
+<configuration debug="false">
 	<appender name="FILE_INFO"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>infoLog.log</file>
