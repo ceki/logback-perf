@@ -49,6 +49,8 @@ BenchmarkJoran.testPropertySetterLongerConfig    ss   30  43885.034 ± 32561.156
 BenchmarkJoran.testPropertySetterShortConfig     ss   30  33825.291 ± 29224.442  us/op
 singleShotPropertySetterLongerConfig time in us:19526
 
+
+1053831.706
 Using java.beans.Introspector 
 Benchmark                                      Mode  Cnt      Score       Error  Units
 BenchmarkJoran.testPropertySetterLongerConfig    ss   30  49013.013 ± 37679.223  us/op
