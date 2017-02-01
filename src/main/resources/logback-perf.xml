@@ -17,7 +17,7 @@
 -->
 <configuration debug="true">
     <appender name="TestLogfile" class="ch.qos.logback.core.FileAppender">
-        <file>c:/tmp/testlogback.log</file>
+        <file>/tmp/testlogback.log</file>
         <bufferSize>256KB</bufferSize>
         <encoder>
             <immediateFlush>false</immediateFlush>
