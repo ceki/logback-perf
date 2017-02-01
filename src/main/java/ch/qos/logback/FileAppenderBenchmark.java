@@ -32,17 +32,20 @@ public class FileAppenderBenchmark {
     public static final String MESSAGE = "This is a debug message";
     Logger log4j2RandomLogger;
     org.slf4j.Logger slf4jLogger;
-
+    String outFolder = "";
+    
     @Setup
     public void setUp() throws Exception {
         System.setProperty("log4j.configurationFile", "log4j2-perf.xml");
         System.setProperty("logback.configurationFile", "logback-perf.xml");
 
+        outFolder = System.getProperty("outFolder", "");
+        
         deleteLogFiles();
 
         log4j2RandomLogger = LogManager.getLogger("TestRandom");
         slf4jLogger = LoggerFactory.getLogger(FileAppenderBenchmark.class);
-
+        slf4jLogger = LoggerFactory.getLogger(org.slf4j.Logger.ROOT_LOGGER_NAME);
     }
 
     @TearDown
@@ -55,9 +58,9 @@ public class FileAppenderBenchmark {
     }
 
     private void deleteLogFiles() {
-        final File logbackFile = new File("target/testlogback.log");
+        final File logbackFile = new File(outFolder+"target/testlogback.log");
         logbackFile.delete();
-        final File log4jRandomFile = new File("target/testRandomlog4j2.log");
+        final File log4jRandomFile = new File(outFolder+"target/testRandomlog4j2.log");
         log4jRandomFile.delete();
     }
 
@@ -75,66 +78,5 @@ public class FileAppenderBenchmark {
         slf4jLogger.debug(MESSAGE);
     }
 
-    void warmUp() {
-        for (int i = 0; i < 10000; i++) {
-            slf4jLogger.debug(MESSAGE);
-        }
-    }
 
-    void mainLoop() {
-        int runLen = 100 * 1000;
-        for (int i = 0; i < runLen; i++) {
-            slf4jLogger.debug(MESSAGE);
-        }
-
-    }
-
-    public static void main(String[] args) throws Exception {
-        FileAppenderBenchmark bench = new FileAppenderBenchmark();
-        bench.setUp();
-
-        bench.warmUp();
-        Thread.yield();
- 
-        int threadCount = 2;
-        Runnable[] runnableArray = bench.buildRunnables(threadCount);
-        bench.execute(runnableArray);
-        
-        bench.tearDown();
-
-        System.out.println("Exiting FileAppenderBenchmark");
-    }
-  
-    
-    Runnable[] buildRunnables(int count) {
-        Runnable[] ra = new Runnable[count];
-        for(int i = 0; i < count; i++) {
-            ra[i] = new MainLoopRunnable();
-        }
-        return ra;
-    }
-    
-    class MainLoopRunnable implements Runnable {
-
-        @Override
-        public void run() {
-            FileAppenderBenchmark.this.mainLoop();
-        }
-        
-    }
-    
-    public void execute(Runnable[] runnableArray) throws InterruptedException {
-        Thread[] threadArray = new Thread[runnableArray.length];
-
-        for (int i = 0; i < runnableArray.length; i++) {
-            threadArray[i] = new Thread(runnableArray[i], "Harness[" + i + "]");
-        }
-        for (Thread t : threadArray) {
-            t.start();
-        }
-
-        for (Thread t : threadArray) {
-            t.join();
-        }
-    }
 }
