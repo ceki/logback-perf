@@ -15,6 +15,7 @@ import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
 import org.slf4j.LoggerFactory;
 
+
 /**
  * Benchmarks Log4j 2, Log4j 1, Logback and JUL using the DEBUG level which is
  * enabled for this test. The configuration for each uses a FileAppender
@@ -54,7 +55,7 @@ public class FileAppenderBenchmark {
     }
 
     private void deleteLogFiles() {
-        final File logbackFile = new File("target/testlogback.log");
+        final File logbackFile = new File("c:/tmp/testlogback.log");
         logbackFile.delete();
         final File log4jRandomFile = new File("target/testRandomlog4j2.log");
         log4jRandomFile.delete();
@@ -67,11 +68,73 @@ public class FileAppenderBenchmark {
         log4j2RandomLogger.debug(MESSAGE);
     }
 
-
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.SECONDS)
     @Benchmark
     public void logbackFile() {
+        slf4jLogger.debug(MESSAGE);
+    }
+
+    void warmUp() {
+        for (int i = 0; i < 10000; i++) {
             slf4jLogger.debug(MESSAGE);
+        }
+    }
+
+    void mainLoop() {
+        int runLen = 100 * 1000;
+        for (int i = 0; i < runLen; i++) {
+            slf4jLogger.debug(MESSAGE);
+        }
+
+    }
+
+    public static void main(String[] args) throws Exception {
+        FileAppenderBenchmark bench = new FileAppenderBenchmark();
+        bench.setUp();
+
+        bench.warmUp();
+        Thread.yield();
+ 
+        int threadCount = 2;
+        Runnable[] runnableArray = bench.buildRunnables(threadCount);
+        bench.execute(runnableArray);
+        
+        bench.tearDown();
+
+        System.out.println("Exiting FileAppenderBenchmark");
+    }
+  
+    
+    Runnable[] buildRunnables(int count) {
+        Runnable[] ra = new Runnable[count];
+        for(int i = 0; i < count; i++) {
+            ra[i] = new MainLoopRunnable();
+        }
+        return ra;
+    }
+    
+    class MainLoopRunnable implements Runnable {
+
+        @Override
+        public void run() {
+            FileAppenderBenchmark.this.mainLoop();
+        }
+        
+    }
+    
+    public void execute(Runnable[] runnableArray) throws InterruptedException {
+        Thread[] threadArray = new Thread[runnableArray.length];
+
+        for (int i = 0; i < runnableArray.length; i++) {
+            threadArray[i] = new Thread(runnableArray[i], "Harness[" + i + "]");
+        }
+        for (Thread t : threadArray) {
+            t.start();
+        }
+
+        for (Thread t : threadArray) {
+            t.join();
+        }
     }
 }
