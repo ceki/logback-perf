@@ -55,7 +55,7 @@ public class FileAppenderBenchmark {
     }
 
     private void deleteLogFiles() {
-        final File logbackFile = new File("c:/tmp/testlogback.log");
+        final File logbackFile = new File("/tmp/testlogback.log");
         logbackFile.delete();
         final File log4jRandomFile = new File("target/testRandomlog4j2.log");
         log4jRandomFile.delete();
