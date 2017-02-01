@@ -42,6 +42,10 @@ import ch.qos.logback.core.joran.spi.JoranException;
 
 /**
 
+ wi: number of warmup iterations
+ i:  umber of benchmarked iterations, use 10 or more to get a good idea
+ tu: timeunit
+ 
  java -jar target/benchmarks.jar '.*BenchmarkJoran' -wi 0 -i 3 -tu us
 
 Benchmark                                      Mode  Cnt      Score       Error  Units
@@ -91,6 +95,15 @@ public class BenchmarkJoran {
         }
         long end = System.nanoTime();
         System.out.println("singleShotPropertySetterLongerConfig time in us:" + (end - start) / (count*1000));
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.SingleShotTime)
+    public void testPropertySetterMinimalConfig() throws JoranException {
+        LoggerContext loggerContext = new LoggerContext();
+        JoranConfigurator joran = new JoranConfigurator();
+        joran.setContext(loggerContext);
+        joran.doConfigure("src/main/resources/logback-minimal.xml");
     }
 
 }
