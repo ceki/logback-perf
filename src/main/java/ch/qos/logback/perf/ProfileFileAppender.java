@@ -1,4 +1,4 @@
-package ch.qos.logback;
+package ch.qos.logback.perf;
 
 import java.io.File;
 

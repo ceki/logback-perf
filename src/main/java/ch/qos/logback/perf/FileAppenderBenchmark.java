@@ -1,4 +1,20 @@
-package ch.qos.logback;
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache license, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the license for the specific language governing permissions and
+ * limitations under the license.
+ */
+package ch.qos.logback.perf;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -30,22 +46,30 @@ import org.slf4j.LoggerFactory;
 @State(Scope.Thread)
 public class FileAppenderBenchmark {
     public static final String MESSAGE = "This is a debug message";
+
+    Logger log4j2Logger;
     Logger log4j2RandomLogger;
     org.slf4j.Logger slf4jLogger;
+    org.apache.log4j.Logger log4j1Logger;
+    java.util.logging.Logger julLogger;
     String outFolder = "";
+    
     
     @Setup
     public void setUp() throws Exception {
         System.setProperty("log4j.configurationFile", "log4j2-perf.xml");
         System.setProperty("logback.configurationFile", "logback-perf.xml");
+        System.setProperty("log4j.configuration", "log4j12-perf.xml");
 
         outFolder = System.getProperty("outFolder", "");
         
         deleteLogFiles();
 
+        log4j2Logger = LogManager.getLogger(FileAppenderBenchmark.class);
         log4j2RandomLogger = LogManager.getLogger("TestRandom");
         slf4jLogger = LoggerFactory.getLogger(FileAppenderBenchmark.class);
-        slf4jLogger = LoggerFactory.getLogger(org.slf4j.Logger.ROOT_LOGGER_NAME);
+        log4j1Logger = org.apache.log4j.Logger.getLogger(FileAppenderBenchmark.class);
+        
     }
 
     @TearDown
@@ -54,14 +78,22 @@ public class FileAppenderBenchmark {
         System.clearProperty("log4j.configuration");
         System.clearProperty("logback.configurationFile");
 
-        deleteLogFiles();
+        //deleteLogFiles();
     }
 
     private void deleteLogFiles() {
-        final File logbackFile = new File(outFolder+"target/testlogback.log");
+        final File logbackFile = new File("target/testlogback.log");
         logbackFile.delete();
-        final File log4jRandomFile = new File(outFolder+"target/testRandomlog4j2.log");
+        
+        final File log4jFile = new File("target/testlog4j.log");
+        log4jFile.delete();
+        
+        
+        final File log4jRandomFile = new File("target/testRandomlog4j2.log");
         log4jRandomFile.delete();
+        
+        final File log4j2File = new File("target/testlog4j2.log");
+        log4j2File.delete();
     }
 
     @BenchmarkMode(Mode.Throughput)
@@ -74,9 +106,21 @@ public class FileAppenderBenchmark {
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.SECONDS)
     @Benchmark
+    public void log4j2File() {
+        log4j2Logger.debug(MESSAGE);
+    }
+    
+    @BenchmarkMode(Mode.Throughput)
+    @OutputTimeUnit(TimeUnit.SECONDS)
+    @Benchmark
     public void logbackFile() {
         slf4jLogger.debug(MESSAGE);
     }
 
-
+    @BenchmarkMode(Mode.Throughput)
+    @OutputTimeUnit(TimeUnit.SECONDS)
+    @Benchmark
+    public void log4j1File() {
+        log4j1Logger.debug(MESSAGE);
+    }
 }

@@ -15,19 +15,17 @@
  limitations under the License.
 
 -->
-<configuration debug="true">
+<configuration debug="false">
     <appender name="TestLogfile" class="ch.qos.logback.core.FileAppender">
-        <file>${outFolder:-d:/perf/}target/testlogback.log</file>
+        <file>target/testlogback.log</file>
         <bufferSize>256KB</bufferSize>
-        <immediateFlush>false</immediateFlush>
+        
+        <!--  <immediateFlush>false</immediateFlush>  uncomment for logback verson 1.2.x and later -->
         <encoder>
+          <immediateFlush>false</immediateFlush> <!-- comment for logback verson 1.2.x and later -->
             <!--  2017-02-01 19:19:35,291 DEBUG [ch.qos.logback.FileAppenderBenchmark.logbackFile-jmh-worker-16] FileAppenderBenchmark  - This is a debug message  -->
-         
-            <!-- <pattern>%d %5p [ch.qos.logback.FileAppenderBenchmark.logbackFile-jmh-worker-16] %c{0} %X{transactionId} - %m%n</pattern>  -->
-            <!-- <pattern>2017-02-01 19:19:35,291 DEBUG [ch.qos.logback.FileAppenderBenchmark.logbackFile-jmh-worker-16] FileAppenderBenchmark  - This is a debug message</pattern>  -->
             <pattern>%d %5p [%t] %c{0} %X{transactionId} - %m%n</pattern>  
-            <!-- ><Pattern>%5p [%t] %c - %m%n</Pattern> -->
-
+             <immediateFlush>false</immediateFlush>
         </encoder>
     </appender>
 

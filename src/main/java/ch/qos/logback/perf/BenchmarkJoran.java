@@ -29,7 +29,7 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package ch.qos.logback;
+package ch.qos.logback.perf;
 
 import org.junit.Test;
 import org.openjdk.jmh.annotations.Benchmark;

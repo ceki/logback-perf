@@ -18,12 +18,12 @@
 -->
 <Configuration name="XMLPerfTest" status="error">
     <Appenders>
-        <File name="TestLogfile" fileName="${sys:outFolder}testlog4j2.log" immediateFlush="false">
+        <File name="TestLogfile" fileName="target/testlog4j2.log" immediateFlush="false">
             <PatternLayout>
                 <Pattern>%d %5p [%t] %c{1} %X{transactionId} - %m%n</Pattern>
             </PatternLayout>
         </File>
-        <RandomAccessFile name="RandomAccessLogFile" fileName="${sys:outFolder}target/testRandomlog4j2.log" immediateFlush="false">
+        <RandomAccessFile name="RandomAccessLogFile" fileName="target/testRandomlog4j2.log" immediateFlush="false">
             <PatternLayout>
                 <Pattern>%d %5p [%t] %c{1} %X{transactionId} - %m%n</Pattern>
             </PatternLayout>
