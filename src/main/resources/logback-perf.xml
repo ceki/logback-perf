@@ -19,9 +19,10 @@
     <appender name="TestLogfile" class="ch.qos.logback.core.FileAppender">
         <file>${outFolder:-d:/perf/}target/testlogback.log</file>
         <bufferSize>256KB</bufferSize>
+        <immediateFlush>false</immediateFlush>
         <encoder>
             <!--  2017-02-01 19:19:35,291 DEBUG [ch.qos.logback.FileAppenderBenchmark.logbackFile-jmh-worker-16] FileAppenderBenchmark  - This is a debug message  -->
-            <immediateFlush>false</immediateFlush>
+         
             <!-- <pattern>%d %5p [ch.qos.logback.FileAppenderBenchmark.logbackFile-jmh-worker-16] %c{0} %X{transactionId} - %m%n</pattern>  -->
             <!-- <pattern>2017-02-01 19:19:35,291 DEBUG [ch.qos.logback.FileAppenderBenchmark.logbackFile-jmh-worker-16] FileAppenderBenchmark  - This is a debug message</pattern>  -->
             <pattern>%d %5p [%t] %c{0} %X{transactionId} - %m%n</pattern>  
