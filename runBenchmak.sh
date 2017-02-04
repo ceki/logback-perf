@@ -1,6 +1,6 @@
 
 
-#rm /tmp/target/test*.log;
+rm /tmp/target/test*.log;
 
 for numThreads in 1 2; # 4 8 16 32 64;
 do
