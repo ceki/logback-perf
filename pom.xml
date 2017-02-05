@@ -14,7 +14,7 @@
 		<jmh.version>1.11.3</jmh.version>
 		<javac.target>1.7</javac.target>
 		<uberjar.name>benchmarks</uberjar.name>
-    <lb.version>1.1.10</lb.version>
+    <lb.version>1.1.9</lb.version>
 	</properties>
 
 	<dependencies>
