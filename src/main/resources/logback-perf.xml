@@ -25,7 +25,6 @@
           <immediateFlush>false</immediateFlush> <!-- comment for logback verson 1.2.x and later -->
             <!--  2017-02-01 19:19:35,291 DEBUG [ch.qos.logback.FileAppenderBenchmark.logbackFile-jmh-worker-16] FileAppenderBenchmark  - This is a debug message  -->
             <pattern>%d %5p [%t] %c{0} %X{transactionId} - %m%n</pattern>  
-             <immediateFlush>false</immediateFlush>
         </encoder>
     </appender>
 
