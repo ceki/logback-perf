@@ -1,5 +1,6 @@
-# logback-perf
-Various logging benchmarks.
+# Logback benchmarking project
+
+This mini-project benchmarks logback against other logging frameworks.
 
 # Verifiable results
 
