@@ -19,12 +19,9 @@
     <appender name="TestLogfile" class="ch.qos.logback.core.FileAppender">
         <file>target/testlogback.log</file>
         <bufferSize>256KB</bufferSize>
-        
-        <!-- a FileAppender option in v 1.2.x -->
+        <!-- immediateFlush is a FileAppender option as of v 1.2.x -->
         <immediateFlush>false</immediateFlush>  
         <encoder>
-          <!-- an Encoder option in v 1.1.x -->
-          <immediateFlush>false</immediateFlush> 
             <!--  2017-02-01 19:19:35,291 DEBUG [ch.qos.logback.FileAppenderBenchmark.logbackFile-jmh-worker-16] FileAppenderBenchmark  - This is a debug message  -->
             <pattern>%d %5p [%t] %c{0} %X{transactionId} - %m%n</pattern>  
         </encoder>
