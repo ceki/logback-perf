@@ -65,8 +65,6 @@ public class FileAppenderBenchmark {
     @Setup
     public void setUp() throws Exception {
         //System.setProperty("logback.statusListenerClass", "ch.qos.logback.core.status.OnConsoleStatusListener");
-        
-        System.out.println("benchmarkType=" + benchmarkType);
 
         if ("async".equals(benchmarkType)) {
             System.setProperty(LOGBACK_CONFGIGURATION_FILE_KEY, "logback-async-file.xml");
