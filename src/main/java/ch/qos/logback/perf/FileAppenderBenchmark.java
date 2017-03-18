@@ -16,6 +16,10 @@
  */
 package ch.qos.logback.perf;
 
+import static ch.qos.logback.perf.CommonConstants.LOG4J2_CONFGIGURATION_FILE_KEY;
+import static ch.qos.logback.perf.CommonConstants.LOG4J_CONFGIGURATION_FILE_KEY;
+import static ch.qos.logback.perf.CommonConstants.LOGBACK_CONFGIGURATION_FILE_KEY;
+
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
@@ -25,12 +29,12 @@ import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
 import org.slf4j.LoggerFactory;
-
 
 /**
  * Benchmarks Log4j 2, Log4j 1, Logback and JUL using the DEBUG level which is
@@ -43,55 +47,69 @@ import org.slf4j.LoggerFactory;
 // RUNNING THIS TEST WITH 4 THREADS:
 // java -jar logback-perf/target/benchmarks.jar ".*FileAppenderBenchmark.*" -f 1
 // -wi 10 -i 20 -t 4
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Thread)
 public class FileAppenderBenchmark {
     public static final String MESSAGE = "This is a debug message";
-
+    
     Logger log4j2Logger;
     Logger log4j2RandomLogger;
     org.slf4j.Logger slf4jLogger;
     org.apache.log4j.Logger log4j1Logger;
     java.util.logging.Logger julLogger;
     String outFolder = "";
-    
-    
+
+    @Param({ "regular", "async" })
+    public String benchmarkType;
+
     @Setup
     public void setUp() throws Exception {
-        System.setProperty("log4j.configurationFile", "log4j2-perf.xml");
-        System.setProperty("logback.configurationFile", "logback-perf.xml");
-        System.setProperty("log4j.configuration", "log4j12-perf.xml");
+        //System.setProperty("logback.statusListenerClass", "ch.qos.logback.core.status.OnConsoleStatusListener");
+        
+        System.out.println("benchmarkType=" + benchmarkType);
+
+        if ("async".equals(benchmarkType)) {
+            System.setProperty(LOGBACK_CONFGIGURATION_FILE_KEY, "logback-async-file.xml");
+            System.setProperty(LOG4J_CONFGIGURATION_FILE_KEY, "log4j1-async-file.xml");
+            System.setProperty(LOG4J2_CONFGIGURATION_FILE_KEY, "log4j2-async-file.xml");
+
+        } else {
+            System.setProperty(LOGBACK_CONFGIGURATION_FILE_KEY, "logback-file.xml");
+            System.setProperty(LOG4J_CONFGIGURATION_FILE_KEY, "log4j1-file.xml");
+            System.setProperty(LOG4J2_CONFGIGURATION_FILE_KEY, "log4j2-file.xml");
+        }
 
         outFolder = System.getProperty("outFolder", "");
-        
+
         deleteLogFiles();
 
         log4j2Logger = LogManager.getLogger(FileAppenderBenchmark.class);
         log4j2RandomLogger = LogManager.getLogger("TestRandom");
         slf4jLogger = LoggerFactory.getLogger(FileAppenderBenchmark.class);
         log4j1Logger = org.apache.log4j.Logger.getLogger(FileAppenderBenchmark.class);
-        
+
     }
 
     @TearDown
     public void tearDown() {
-        System.clearProperty("log4j.configurationFile");
-        System.clearProperty("log4j.configuration");
-        System.clearProperty("logback.configurationFile");
+        System.clearProperty(LOGBACK_CONFGIGURATION_FILE_KEY);
+        System.clearProperty(LOG4J_CONFGIGURATION_FILE_KEY);
+        System.clearProperty(LOG4J2_CONFGIGURATION_FILE_KEY);
+        
 
-        //deleteLogFiles();
+        // deleteLogFiles();
     }
 
     private void deleteLogFiles() {
         final File logbackFile = new File("target/testlogback.log");
         logbackFile.delete();
-        
+
         final File log4jFile = new File("target/testlog4j.log");
         log4jFile.delete();
-        
-        
+
         final File log4jRandomFile = new File("target/testRandomlog4j2.log");
         log4jRandomFile.delete();
-        
+
         final File log4j2File = new File("target/testlog4j2.log");
         log4j2File.delete();
     }
@@ -109,7 +127,7 @@ public class FileAppenderBenchmark {
     public void log4j2File() {
         log4j2Logger.debug(MESSAGE);
     }
-    
+
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.SECONDS)
     @Benchmark

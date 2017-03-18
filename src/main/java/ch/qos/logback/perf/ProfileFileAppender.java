@@ -1,5 +1,7 @@
 package ch.qos.logback.perf;
 
+import static ch.qos.logback.perf.CommonConstants.LOGBACK_CONFGIGURATION_FILE_KEY;
+
 import java.io.File;
 
 import org.openjdk.jmh.annotations.Setup;
@@ -12,7 +14,7 @@ public class ProfileFileAppender {
 
     @Setup
     public void setUp() throws Exception {
-        System.setProperty("logback.configurationFile", "logback-perf.xml");
+        System.setProperty(LOGBACK_CONFGIGURATION_FILE_KEY, "logback-perf.xml");
         deleteLogFiles();
         slf4jLogger = LoggerFactory.getLogger(ProfileFileAppender.class);
 
@@ -20,9 +22,7 @@ public class ProfileFileAppender {
 
     @TearDown
     public void tearDown() {
-        System.clearProperty("log4j.configurationFile");
-        System.clearProperty("log4j.configuration");
-        System.clearProperty("logback.configurationFile");
+        System.clearProperty(LOGBACK_CONFGIGURATION_FILE_KEY);
 
         deleteLogFiles();
     }
