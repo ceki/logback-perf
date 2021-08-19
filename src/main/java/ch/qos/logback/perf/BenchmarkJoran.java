@@ -42,6 +42,9 @@ import ch.qos.logback.core.joran.spi.JoranException;
 
 /**
 
+ Given that we are most interested in start up times, one iteration makes most sense, 
+ i.e. -i 1 as command line parameter:
+
  wi: number of warmup iterations
  i:  umber of benchmarked iterations, use 10 or more to get a good idea
  tu: timeunit
