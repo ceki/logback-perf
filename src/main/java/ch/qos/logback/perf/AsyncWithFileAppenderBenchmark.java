@@ -36,13 +36,8 @@ import org.slf4j.LoggerFactory;
  * Benchmarks Logback AsyncAppender in conjunction with FileAppender */
 
 // HOW TO RUN THIS TEST
-// java -jar  target/benchmarks.jar ".*AsyncWithFileAppenderBenchmark" -f 1  -tu ms -wi 2 -i 6 -t 32
-
-// Results with 1.3.0-alpha9 
-// 147.698 ±(99.9%) 2.416 ops/ms [Average]	
-
-// Results with 1.3.0-alpha10 (drainTo optimization)
-// 670.666 ±(99.9%) 772.473 ops/ms [Average]
+// 
+//java -jar  target/benchmarks.jar ".*AsyncWithFileAppenderBenchmark.*" -f 1  -tu ms -wi 2 -i 10 -t {1,2,4,16,32,64}
 	
 
 @State(Scope.Benchmark)
@@ -53,7 +48,6 @@ public class AsyncWithFileAppenderBenchmark {
     Logger log4j2RandomLogger;
     org.slf4j.Logger slf4jLogger;
     org.apache.log4j.Logger log4j1Logger;
-    //java.util.logging.Logger julLogger;
     
     
     @Setup
@@ -79,19 +73,12 @@ public class AsyncWithFileAppenderBenchmark {
         System.clearProperty("log4j.configuration");
         System.clearProperty("logback.configurationFile");
 
-        //deleteLogFiles();
+        deleteLogFiles();
     }
 
     private void deleteLogFiles() {
-        //final File logbackFile = new File("target/testlogback.log");
-        //logbackFile.delete();
-        
-        //final File log4jFile = new File("target/testlog4j.log");
-        //log4jFile.delete();
-        
-        
-        //final File log4jRandomFile = new File("target/testRandomlog4j2.log");
-        //log4jRandomFile.delete();
+        final File log4jFile = new File("target/test-output/testAsynclog4j.log");
+        log4jFile.delete();
         
         final File log4j2File = new File("target/test-output/log4j2-async.log");
         log4j2File.delete();
@@ -112,7 +99,7 @@ public class AsyncWithFileAppenderBenchmark {
     }
 
     @BenchmarkMode(Mode.Throughput)
-    @OutputTimeUnit(TimeUnit.SECONDS)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     @Benchmark
     public void log4j1File() {
         log4j1Logger.debug(MESSAGE);
