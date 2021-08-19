@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- No need to set system property "log4j2.contextSelector" to any value 
+	when using <asyncLogger> or <asyncRoot>. -->
+
+<Configuration status="WARN">
+
+	<Appenders>
+		<!-- Async Loggers will auto-flush in batches, so switch off immediateFlush. -->
+		<RandomAccessFile name="RandomAccessFile"
+			fileName="target/test-output/log4j2-async.log" immediateFlush="false" append="false">
+			<PatternLayout>
+				<Pattern>%d %p [%t] %logger - %m %ex%n</Pattern>
+			</PatternLayout>
+		</RandomAccessFile>
+	</Appenders>
+
+	<Loggers>
+		<!-- 
+		<AsyncLogger name="ch.qos.logback.perf" level="trace" includeLocation="false">
+			<AppenderRef ref="RandomAccessFile" />
+		</AsyncLogger>
+		 -->
+		<Root level="debug" >
+			<AppenderRef ref="RandomAccessFile" />
+		</Root>
+	</Loggers>
+</Configuration>
