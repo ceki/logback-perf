@@ -65,8 +65,8 @@ public class FileAppenderBenchmark {
         
         deleteLogFiles();
 
-        String loggerName =       "ch.qos.logback.perf.FileAppenderBenchmark0";
-        String randomLoggerName = "ch.qos.logback.perf.FileAppenderBenchmark1";
+        String loggerName =       "ch.qos.logback.perf.FileAppenderBenchmark.Regular";
+        String randomLoggerName = "ch.qos.logback.perf.FileAppenderBenchmark.Randomm";
         
         log4j2Logger = LogManager.getLogger(loggerName);
         log4j2RandomLogger = LogManager.getLogger(randomLoggerName);
@@ -100,28 +100,28 @@ public class FileAppenderBenchmark {
     }
 
     @BenchmarkMode(Mode.Throughput)
-    @OutputTimeUnit(TimeUnit.SECONDS)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     @Benchmark
     public void log4j2RAF() {
         log4j2RandomLogger.debug(MESSAGE);
     }
 
     @BenchmarkMode(Mode.Throughput)
-    @OutputTimeUnit(TimeUnit.SECONDS)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     @Benchmark
     public void log4j2File() {
         log4j2Logger.debug(MESSAGE);
     }
     
     @BenchmarkMode(Mode.Throughput)
-    @OutputTimeUnit(TimeUnit.SECONDS)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     @Benchmark
     public void logbackFile() {
         slf4jLogger.debug(MESSAGE);
     }
 
     @BenchmarkMode(Mode.Throughput)
-    @OutputTimeUnit(TimeUnit.SECONDS)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     @Benchmark
     public void log4j1File() {
         log4j1Logger.debug(MESSAGE);
