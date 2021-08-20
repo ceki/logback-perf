@@ -1,18 +1,13 @@
 <configuration debug="false">
 	
-	
-	<timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
-	
-	
 	<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
 	  <discardingThreshold>0</discardingThreshold>
 	  <appender-ref ref="FILE" />
 	</appender>
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>target/test-output/async-perf-test-logback-${bySecond}.log</file>
+        <file>target/test-output/logback-async-perf.log</file>
         <bufferSize>256KB</bufferSize>
-        <!-- immediateFlush is a FileAppender option as of v 1.2.x -->
         <immediateFlush>false</immediateFlush>  
         <encoder>
             <pattern>%d %p [%t] %logger - %m%n</pattern>  

@@ -18,7 +18,7 @@
 <configuration debug="false">
     
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>target/testlogback.log</file>
+        <file>target/test-output/logback-perf.log</file>
         <bufferSize>256KB</bufferSize>
         <immediateFlush>false</immediateFlush>  
         <encoder>

@@ -46,6 +46,10 @@ import org.slf4j.LoggerFactory;
 public class AsyncWithFileAppenderBenchmark {
     public static final String MESSAGE = "This is a debug message";
 
+    public static final String LOGBACK_ASYNC_FILE_PATH = "target/test-output/logback-async-perf.log";
+    public static final String LOG4J2_ASYNC_FILE_PATH = "target/test-output/log4j2-async-perf.log";
+    public static final String LOG4J_ASYNC_FILE_PATH = "target/test-output/log4j-async-perf.log";
+    
     Logger log4j2Logger;
     Logger log4j2RandomLogger;
     org.slf4j.Logger slf4jLogger;
@@ -57,7 +61,7 @@ public class AsyncWithFileAppenderBenchmark {
     	System.setProperty("log4j2.contextSelector", "org.apache.logging.log4j.core.async.AsyncLoggerContextSelector");
         System.setProperty("log4j.configurationFile",   "log4j2-async-perf.xml");
         System.setProperty("logback.configurationFile", "logback-async-perf.xml");
-        System.setProperty("log4j.configuration",       "log4j12-async-perf.xml");
+        System.setProperty("log4j.configuration",       "log4j-async-perf.xml");
 
         
         deleteLogFiles();
@@ -78,12 +82,18 @@ public class AsyncWithFileAppenderBenchmark {
     }
 
     private void deleteLogFiles() {
+    	final File logbackFile = new File(LOGBACK_ASYNC_FILE_PATH);
+    	logbackFile.delete();
+    	
+
+        final File log4j2File = new File(LOG4J2_ASYNC_FILE_PATH);
+        log4j2File.delete();
+        
         final File log4jFile = new File("target/test-output/testAsynclog4j.log");
         log4jFile.delete();
         
-        final File log4j2File = new File("target/test-output/log4j2-async.log");
-        log4j2File.delete();
     }
+    
     
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)

@@ -46,9 +46,11 @@ import org.slf4j.LoggerFactory;
 @State(Scope.Benchmark)
 public class FileAppenderBenchmark {
     public static final String MESSAGE = "This is a debug message";
-
+    public static final String LOGBACK_FILE_PATH = "target/test-output/logback-perf.log";
+    public static final String LOG4J2_FILE_PATH = "target/test-output/log4j2-perf.log";
+    public static final String LOG4J_FILE_PATH = "target/test-output/log4j-perf.log";
+    
     Logger log4j2Logger;
-    Logger log4j2RandomLogger;
     org.slf4j.Logger slf4jLogger;
     org.apache.log4j.Logger log4j1Logger;
     java.util.logging.Logger julLogger;
@@ -59,17 +61,15 @@ public class FileAppenderBenchmark {
     public void setUp() throws Exception {
         System.setProperty("log4j.configurationFile", "log4j2-perf.xml");
         System.setProperty("logback.configurationFile", "logback-perf.xml");
-        System.setProperty("log4j.configuration", "log4j12-perf.xml");
+        System.setProperty("log4j.configuration", "log4j-perf.xml");
 
         outFolder = System.getProperty("outFolder", "");
         
         deleteLogFiles();
 
-        String loggerName =       "ch.qos.logback.perf.FileAppenderBenchmark.Regular";
-        String randomLoggerName = "ch.qos.logback.perf.FileAppenderBenchmark.Randomm";
+        String loggerName =       "ch.qos.logback.perf.FileAppenderBenchmark";
         
         log4j2Logger = LogManager.getLogger(loggerName);
-        log4j2RandomLogger = LogManager.getLogger(randomLoggerName);
         slf4jLogger = LoggerFactory.getLogger(loggerName);
         log4j1Logger = org.apache.log4j.Logger.getLogger(loggerName);
         
@@ -85,25 +85,14 @@ public class FileAppenderBenchmark {
     }
 
     private void deleteLogFiles() {
-        final File logbackFile = new File("target/testlogback.log");
+        final File logbackFile = new File(LOGBACK_FILE_PATH);
         logbackFile.delete();
         
-        final File log4jFile = new File("target/testlog4j.log");
+        final File log4jFile = new File(LOG4J_FILE_PATH);
         log4jFile.delete();
         
-        
-        final File log4jRandomFile = new File("target/testRandomlog4j2.log");
-        log4jRandomFile.delete();
-        
-        final File log4j2File = new File("target/testlog4j2.log");
+        final File log4j2File = new File(LOG4J2_FILE_PATH);
         log4j2File.delete();
-    }
-
-    @BenchmarkMode(Mode.Throughput)
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    @Benchmark
-    public void log4j2RAF() {
-        log4j2RandomLogger.debug(MESSAGE);
     }
 
     @BenchmarkMode(Mode.Throughput)

@@ -6,7 +6,7 @@
 	</appender>
 	
     <appender name="FILE" class="org.apache.log4j.FileAppender">
-        <param name="File" value="target/test-output/testAsynclog4j.log"/>
+        <param name="File" value="target/test-output/log4j-async-perf.log"/>
         <param name="immediateFlush" value="false"/>
         <param name="bufferSize" value="256000"/>
         <layout class="org.apache.log4j.PatternLayout">

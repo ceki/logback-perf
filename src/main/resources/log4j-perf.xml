@@ -5,7 +5,7 @@
 
 
 	<appender name="FILE" class="org.apache.log4j.FileAppender">
-		<param name="File" value="target/test-output/testlog4j.log" />
+		<param name="File" value="target/test-output/log4j-perf.log" />
 		<param name="immediateFlush" value="false" />
 		<param name="bufferSize" value="256000" />
 		<layout class="org.apache.log4j.PatternLayout">

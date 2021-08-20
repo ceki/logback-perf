@@ -19,25 +19,14 @@
 <Configuration name="XMLPerfTest" status="error">
 
     <Appenders>
-
-        <File name="TestLogfile" fileName="target/testlog4j2.log" immediateFlush="false">
+        <File name="TestLogfile" fileName="target/test-output/log4j2-perf.log" immediateFlush="false">
             <PatternLayout>
                 <Pattern>%d %p [%t] %logger - %m%n</Pattern>
             </PatternLayout>
         </File>
-
-        <RandomAccessFile name="RandomAccessLogFile" fileName="target/testRandomlog4j2.log" 
-                          immediateFlush="false">
-            <PatternLayout>
-                <Pattern>%d %p [%t] %logger - %m%n</Pattern>
-            </PatternLayout>
-        </RandomAccessFile>
     </Appenders>
 
     <Loggers>
-        <Logger name="ch.qos.logback.perf.FileAppenderBenchmark.Randomm" level="debug" additivity="false">
-            <AppenderRef ref="RandomAccessLogFile"/>
-        </Logger>
         <Root level="debug">
             <AppenderRef ref="TestLogfile"/>
         </Root>
