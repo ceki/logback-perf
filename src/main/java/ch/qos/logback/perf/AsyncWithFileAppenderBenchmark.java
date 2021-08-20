@@ -33,7 +33,9 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * Benchmarks Logback AsyncAppender in conjunction with FileAppender */
+ * Benchmarks Logback AsyncAppender in conjunction with FileAppender 
+ * 
+ * */
 
 // HOW TO RUN THIS TEST
 // 
@@ -48,7 +50,6 @@ public class AsyncWithFileAppenderBenchmark {
     Logger log4j2RandomLogger;
     org.slf4j.Logger slf4jLogger;
     org.apache.log4j.Logger log4j1Logger;
-    
     
     @Setup
     public void setUp() throws Exception {

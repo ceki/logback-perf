@@ -43,7 +43,7 @@ import org.slf4j.LoggerFactory;
 // RUNNING THIS TEST WITH 4 THREADS:
 // java -jar logback-perf/target/benchmarks.jar ".*FileAppenderBenchmark.*" -f 1
 // -wi 10 -i 20 -t 4
-@State(Scope.Thread)
+@State(Scope.Benchmark)
 public class FileAppenderBenchmark {
     public static final String MESSAGE = "This is a debug message";
 
@@ -81,7 +81,7 @@ public class FileAppenderBenchmark {
         System.clearProperty("log4j.configuration");
         System.clearProperty("logback.configurationFile");
 
-        //deleteLogFiles();
+        deleteLogFiles();
     }
 
     private void deleteLogFiles() {
