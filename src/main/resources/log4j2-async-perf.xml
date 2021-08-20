@@ -10,17 +10,12 @@
 		<RandomAccessFile name="RandomAccessFile"
 			fileName="target/test-output/log4j2-async.log" immediateFlush="false" append="false">
 			<PatternLayout>
-				<Pattern>%d %p [%t] %logger - %m %ex%n</Pattern>
+				<Pattern>%d %p [%t] %logger - %m%n</Pattern>
 			</PatternLayout>
 		</RandomAccessFile>
 	</Appenders>
 
 	<Loggers>
-		<!-- 
-		<AsyncLogger name="ch.qos.logback.perf" level="trace" includeLocation="false">
-			<AppenderRef ref="RandomAccessFile" />
-		</AsyncLogger>
-		 -->
 		<Root level="debug" >
 			<AppenderRef ref="RandomAccessFile" />
 		</Root>

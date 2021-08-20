@@ -65,10 +65,13 @@ public class FileAppenderBenchmark {
         
         deleteLogFiles();
 
-        log4j2Logger = LogManager.getLogger(FileAppenderBenchmark.class);
-        log4j2RandomLogger = LogManager.getLogger("TestRandom");
-        slf4jLogger = LoggerFactory.getLogger(FileAppenderBenchmark.class);
-        log4j1Logger = org.apache.log4j.Logger.getLogger(FileAppenderBenchmark.class);
+        String loggerName =       "ch.qos.logback.perf.FileAppenderBenchmark0";
+        String randomLoggerName = "ch.qos.logback.perf.FileAppenderBenchmark1";
+        
+        log4j2Logger = LogManager.getLogger(loggerName);
+        log4j2RandomLogger = LogManager.getLogger(randomLoggerName);
+        slf4jLogger = LoggerFactory.getLogger(loggerName);
+        log4j1Logger = org.apache.log4j.Logger.getLogger(loggerName);
         
     }
 

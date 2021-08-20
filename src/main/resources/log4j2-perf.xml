@@ -17,20 +17,25 @@
 
 -->
 <Configuration name="XMLPerfTest" status="error">
+
     <Appenders>
+
         <File name="TestLogfile" fileName="target/testlog4j2.log" immediateFlush="false">
             <PatternLayout>
-                <Pattern>%d %5p [%t] %c{1} %X{transactionId} - %m%n</Pattern>
+                <Pattern>%d %p [%t] %logger - %m%n</Pattern>
             </PatternLayout>
         </File>
-        <RandomAccessFile name="RandomAccessLogFile" fileName="target/testRandomlog4j2.log" immediateFlush="false">
+
+        <RandomAccessFile name="RandomAccessLogFile" fileName="target/testRandomlog4j2.log" 
+                          immediateFlush="false">
             <PatternLayout>
-                <Pattern>%d %5p [%t] %c{1} %X{transactionId} - %m%n</Pattern>
+                <Pattern>%d %p [%t] %logger - %m%n</Pattern>
             </PatternLayout>
         </RandomAccessFile>
     </Appenders>
+
     <Loggers>
-        <Logger name="TestRandom" level="debug" additivity="false">
+        <Logger name="ch.qos.logback.perf.FileAppenderBenchmark.Randomm" level="debug" additivity="false">
             <AppenderRef ref="RandomAccessLogFile"/>
         </Logger>
         <Root level="debug">

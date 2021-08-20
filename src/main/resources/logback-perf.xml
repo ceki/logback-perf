@@ -16,18 +16,17 @@
 
 -->
 <configuration debug="false">
-    <appender name="TestLogfile" class="ch.qos.logback.core.FileAppender">
+    
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>target/testlogback.log</file>
         <bufferSize>256KB</bufferSize>
-        <!-- immediateFlush is a FileAppender option as of v 1.2.x -->
         <immediateFlush>false</immediateFlush>  
         <encoder>
-            <!--  2017-02-01 19:19:35,291 DEBUG [ch.qos.logback.FileAppenderBenchmark.logbackFile-jmh-worker-16] FileAppenderBenchmark  - This is a debug message  -->
-            <pattern>%d %5p [%t] %c{0} %X{transactionId} - %m%n</pattern>  
+            <pattern>%d %p [%t] %c - %m%n</pattern>  
         </encoder>
     </appender>
 
-    <root level="debug">
-        <appender-ref ref="TestLogfile" />
+    <root level="DEBUG">
+        <appender-ref ref="FILE" />
     </root>
 </configuration>
