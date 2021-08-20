@@ -1,27 +1,16 @@
 
+DATE=$(date  '+%Y-%m-%dT%H%M')
 
-# by default test ALL methods in FileAppenderBenchmark
-METHOD=log 
-
-if [ ! -z $1 ]
-then
-  METHOD=$1
-   echo "Will run benchmark methods in FileAppenderBenchmark with names starting with [$METHOD]"
-else
-  echo "Will run all benchmark methods in FileAppenderBenchmark"
-fi
-
-echo "Results will be output into file $METHOD.csv"
+echo "Results will be output into file results-${DATE}-[threadCount].csv"
 sleep 1
 
+DATE=$(date  '+%Y-%m-%dT%H%M')
 
-for numThreads in 1 2 4 8 16 32 64;
+
+
+for TC in 1 2 4 8 16 32 64;
 do
-    rm /tmp/target/test*.log;
-    echo "Number of threads $numThreads"
-    $JAVA_HOME/bin/java -jar target/benchmarks.jar ".*FileAppenderBenchmark.${METHOD}" -f 1  -tu ms -wi 5 -i 10 -t $numThreads -rff tmp.csv -rf csv
-    cat tmp.csv >> $METHOD.csv
-    rm tmp.csv
+    echo "Number of threads $TC"
+    $JAVA_HOME/bin/java -jar target/benchmarks.jar ".*WithFileAppenderBenchmark.logbackFile" -f 1  -tu ms -wi 0 -i 1 -t $TC -rff results-${DATE}-$TC.csv -rf csv
 done
-
 
