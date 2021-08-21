@@ -13,4 +13,5 @@ do
     mvn install
     java -jar target/benchmarks.jar ".*FileAppenderBenchmark.*" -f 2 -r 4 -tu ms -wi 3 -i 6 -t $TC -rff "results-${DATE}-$TC.csv" -rf csv
 done
+ 
 
