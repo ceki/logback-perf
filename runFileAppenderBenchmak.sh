@@ -1,7 +1,7 @@
 
 DATE=$(date  '+%Y-%m-%dT%H%M')
 
-echo "Results will be output into file results-${DATE}-[threadCount].csv"
+echo "Results will be output into file results-${DATE}-[threadCount].txt"
 sleep 1
 
 DATE=$(date  '+%Y-%m-%dT%H%M')
@@ -11,7 +11,7 @@ do
     echo "Number of threads $TC"
     mvn clean
     mvn install
-    java -jar target/benchmarks.jar ".*FileAppenderBenchmark.*" -f 2 -r 4 -tu ms -wi 3 -i 6 -t $TC -rff "results-${DATE}-$TC.csv" -rf csv
+    java -jar target/benchmarks.jar ".*FileAppenderBenchmark.*" -f 2 -r 4 -tu ms -wi 3 -i 6 -t $TC -o "results-${DATE}-$TC.txt" 
 done
 
 

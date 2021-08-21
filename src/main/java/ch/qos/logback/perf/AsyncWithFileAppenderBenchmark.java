@@ -78,11 +78,12 @@ public class AsyncWithFileAppenderBenchmark {
         System.clearProperty("log4j.configuration");
         System.clearProperty("logback.configurationFile");
 
-        deleteLogFiles();
+        // better to delete files in setUp not in tearrDown!
+        //deleteLogFiles();
     }
 
     private void deleteLogFiles() {
-    	System.out.println("Deleting files ");
+    	System.out.println("Deleting files if existent.");
     	chattyDelete(LOGBACK_ASYNC_FILE_PATH);
        	chattyDelete(LOG4J2_ASYNC_FILE_PATH);
        	chattyDelete(LOG4J_ASYNC_FILE_PATH);
@@ -90,7 +91,10 @@ public class AsyncWithFileAppenderBenchmark {
     
     private void chattyDelete(String path) {
     	final File file2Delete = new File(path);
-        //System.out.println("About to delete [" + path + "]");
+    	if(!file2Delete.exists()) {
+    		return;
+    	}
+        System.out.println("About to delete [" + path + "]");
     	boolean result = file2Delete.delete();
     	if(!result) 
     		System.out.println("Failed to delete " + path);
