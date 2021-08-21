@@ -1,1 +1,1 @@
-runFileAppenderBenchmak.sh text=lf
+runFileAppenderBenchmak.sh text eol=lf
