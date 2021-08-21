@@ -8,7 +8,7 @@
 	<Appenders>
 		<!-- Async Loggers will auto-flush in batches, so switch off immediateFlush. -->
 		<RandomAccessFile name="RandomAccessFile"
-			fileName="target/test-output/log4j2-async.log" immediateFlush="false" append="false">
+			fileName="target/test-output/log4j2-async-perf.log" immediateFlush="false" append="false">
 			<PatternLayout>
 				<Pattern>%d %p [%t] %logger - %m%n</Pattern>
 			</PatternLayout>

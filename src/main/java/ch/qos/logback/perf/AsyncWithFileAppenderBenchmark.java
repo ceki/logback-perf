@@ -45,11 +45,11 @@ import org.slf4j.LoggerFactory;
 @State(Scope.Benchmark)
 public class AsyncWithFileAppenderBenchmark {
     public static final String MESSAGE = "This is a debug message";
-
+    
     public static final String LOGBACK_ASYNC_FILE_PATH = "target/test-output/logback-async-perf.log";
     public static final String LOG4J2_ASYNC_FILE_PATH = "target/test-output/log4j2-async-perf.log";
     public static final String LOG4J_ASYNC_FILE_PATH = "target/test-output/log4j-async-perf.log";
-    
+                                                        
     Logger log4j2Logger;
     Logger log4j2RandomLogger;
     org.slf4j.Logger slf4jLogger;
@@ -82,20 +82,21 @@ public class AsyncWithFileAppenderBenchmark {
     }
 
     private void deleteLogFiles() {
-    	final File logbackFile = new File(LOGBACK_ASYNC_FILE_PATH);
-    	logbackFile.delete();
-    	
-
-        final File log4j2File = new File(LOG4J2_ASYNC_FILE_PATH);
-        log4j2File.delete();
-        
-        final File log4jFile = new File("target/test-output/testAsynclog4j.log");
-        log4jFile.delete();
-        
+    	System.out.println("Deleting files ");
+    	chattyDelete(LOGBACK_ASYNC_FILE_PATH);
+       	chattyDelete(LOG4J2_ASYNC_FILE_PATH);
+       	chattyDelete(LOG4J_ASYNC_FILE_PATH);
     }
     
-    
-    @BenchmarkMode(Mode.Throughput)
+    private void chattyDelete(String path) {
+    	final File file2Delete = new File(path);
+        //System.out.println("About to delete [" + path + "]");
+    	boolean result = file2Delete.delete();
+    	if(!result) 
+    		System.out.println("Failed to delete " + path);
+	}
+
+	@BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     @Benchmark
     public void logbackFile() {
