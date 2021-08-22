@@ -11,7 +11,7 @@ do
     echo "Number of threads $TC"
     mvn clean
     mvn install
-    java -jar target/benchmarks.jar ".*FileAppenderBenchmark.*" -f 2 -r 4 -tu ms -wi 3 -i 6 -t $TC -o "results-${DATE}-$TC.txt" 
+    java -jar target/benchmarks.jar ".*FileAppenderBenchmark.*" -f 2 -r 4 -tu ms -wi 2 -i 6 -t $TC -o "results-${DATE}-$TC.txt" 
 done
 
 
