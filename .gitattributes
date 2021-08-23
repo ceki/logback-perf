@@ -1,1 +1,2 @@
 runFileAppenderBenchmak.sh text eol=lf
+runFileAppenderBenchmark.sh text eol=lf
