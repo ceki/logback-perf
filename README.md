@@ -4,6 +4,13 @@ This mini project benchmark logback to optimize performance. It is
 useful in comparing logback against other logging frameworks such as
 log4j and log4j2.
 
+Please refer to the [logback benchmark page](http://logback.qos.ch/performance.html) for a 
+general discussion about the logic behind this benchmark and an analysis of the results.
+
+Results are also viewable as a [**Google doc spreadsheet**.](https://docs.google.com/spreadsheets/d/1cpb5D7qnyye4W0RTlHUnXedYK98catNZytYIu5D91m0/edit?usp=sharing)
+
+# Do run the benchmark on your own
+
 We welcome all suggestions. You are also highly encouraged to run the
 benchmarks in your own computing environment.
 
@@ -26,20 +33,12 @@ the `target/test-output/` folder between runs.
 Alternatively, you can run the `runFileAppenderBenchmark.sh` script which performs the
 above steps for you. 
 
-# Publicly verifiable results
-
 In the this spirit of result verifiability, we encourage *everyone* to
 run the `runFileAppenderBenchmak.sh` script and post their results on
 the [logback mailing lists](https://logback.qos.ch/mailinglist.html).
 
-Results are viewable as a [**Google doc spreadsheet**.](https://docs.google.com/spreadsheets/d/1cpb5D7qnyye4W0RTlHUnXedYK98catNZytYIu5D91m0/edit?usp=sharing)
-
 We feel that results provided by neutral parties, that is by
 developers not directly affiliated with the logback project, lends
 more credibility to our benchmarking results.
-
-See also the [logback benchmark page](http://logback.qos.ch/performance.html) for a 
-general discussion about the logic behind the benchmark and analysis of the results.
-
 
 
