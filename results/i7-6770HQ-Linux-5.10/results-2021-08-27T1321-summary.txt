@@ -1,0 +1,49 @@
+results-2021-08-27T1321-1-txt
+FileAppenderBenchmark.log4j1File                thrpt   12  1053.167 ± 26.158  ops/ms
+FileAppenderBenchmark.log4j2File                thrpt   12  1251.346 ± 51.999  ops/ms
+FileAppenderBenchmark.logbackFile               thrpt   12  1843.782 ± 48.984  ops/ms
+AsyncWithFileAppenderBenchmark.log4j1File       thrpt   12  1012.538 ± 19.305  ops/ms
+AsyncWithFileAppenderBenchmark.log4j2AsyncFile  thrpt   12  1232.376 ± 76.125  ops/ms
+AsyncWithFileAppenderBenchmark.logbackFile      thrpt   12  1921.964 ± 84.688  ops/ms
+results-2021-08-27T1321-2-txt
+FileAppenderBenchmark.log4j1File                thrpt   12   766.276 ±  15.023  ops/ms
+FileAppenderBenchmark.log4j2File                thrpt   12  1529.964 ±  16.651  ops/ms
+FileAppenderBenchmark.logbackFile               thrpt   12  2114.775 ± 129.031  ops/ms
+AsyncWithFileAppenderBenchmark.log4j1File       thrpt   12   977.745 ±  58.490  ops/ms
+AsyncWithFileAppenderBenchmark.log4j2AsyncFile  thrpt   12  1156.614 ±  90.689  ops/ms
+AsyncWithFileAppenderBenchmark.logbackFile      thrpt   12  1692.588 ± 129.970  ops/ms
+results-2021-08-27T1321-4-txt
+FileAppenderBenchmark.log4j1File                thrpt   12   814.250 ±  11.284  ops/ms
+FileAppenderBenchmark.log4j2File                thrpt   12  1431.537 ± 253.554  ops/ms
+FileAppenderBenchmark.logbackFile               thrpt   12  1702.739 ±  40.997  ops/ms
+AsyncWithFileAppenderBenchmark.log4j1File       thrpt   12   914.801 ±  41.654  ops/ms
+AsyncWithFileAppenderBenchmark.log4j2AsyncFile  thrpt   12  1108.911 ±  91.980  ops/ms
+AsyncWithFileAppenderBenchmark.logbackFile      thrpt   12  1642.364 ±  49.951  ops/ms
+results-2021-08-27T1321-8-txt
+FileAppenderBenchmark.log4j1File                thrpt   12   803.536 ± 18.296  ops/ms
+FileAppenderBenchmark.log4j2File                thrpt   12  1350.924 ± 41.750  ops/ms
+FileAppenderBenchmark.logbackFile               thrpt   12  1727.973 ± 51.786  ops/ms
+AsyncWithFileAppenderBenchmark.log4j1File       thrpt   12   905.808 ± 54.445  ops/ms
+AsyncWithFileAppenderBenchmark.log4j2AsyncFile  thrpt   12  1097.256 ± 76.009  ops/ms
+AsyncWithFileAppenderBenchmark.logbackFile      thrpt   12  1607.005 ± 52.882  ops/ms
+results-2021-08-27T1321-16-txt
+FileAppenderBenchmark.log4j1File                thrpt   12   799.801 ± 18.818  ops/ms
+FileAppenderBenchmark.log4j2File                thrpt   12  1284.621 ± 52.927  ops/ms
+FileAppenderBenchmark.logbackFile               thrpt   12  1745.192 ± 54.530  ops/ms
+AsyncWithFileAppenderBenchmark.log4j1File       thrpt   12   892.459 ± 35.248  ops/ms
+AsyncWithFileAppenderBenchmark.log4j2AsyncFile  thrpt   12   995.391 ± 21.649  ops/ms
+AsyncWithFileAppenderBenchmark.logbackFile      thrpt   12  1583.016 ± 60.233  ops/ms
+results-2021-08-27T1321-32-txt
+FileAppenderBenchmark.log4j1File                thrpt   12   801.627 ±  7.684  ops/ms
+FileAppenderBenchmark.log4j2File                thrpt   12  1281.883 ± 54.734  ops/ms
+FileAppenderBenchmark.logbackFile               thrpt   12  1696.089 ± 58.689  ops/ms
+AsyncWithFileAppenderBenchmark.log4j1File       thrpt   12   883.881 ± 37.605  ops/ms
+AsyncWithFileAppenderBenchmark.log4j2AsyncFile  thrpt   12  1019.942 ± 71.886  ops/ms
+AsyncWithFileAppenderBenchmark.logbackFile      thrpt   12  1520.295 ± 56.371  ops/ms
+results-2021-08-27T1321-64-txt
+FileAppenderBenchmark.log4j1File                thrpt   12   827.558 ±  11.938  ops/ms
+FileAppenderBenchmark.log4j2File                thrpt   12  1380.424 ±  90.988  ops/ms
+FileAppenderBenchmark.logbackFile               thrpt   12  1729.511 ±  62.083  ops/ms
+AsyncWithFileAppenderBenchmark.log4j1File       thrpt   12   895.351 ±  59.688  ops/ms
+AsyncWithFileAppenderBenchmark.log4j2AsyncFile  thrpt   12  1048.110 ±  84.777  ops/ms
+AsyncWithFileAppenderBenchmark.logbackFile      thrpt   12  1525.028 ± 125.606  ops/ms
