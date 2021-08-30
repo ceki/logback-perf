@@ -9,6 +9,7 @@
         <file>target/test-output/logback-async-perf.log</file>
         <bufferSize>256KB</bufferSize>
         <immediateFlush>false</immediateFlush>  
+        <append>false</append>
         <encoder>
             <pattern>%d %p [%t] %logger - %m%n</pattern>  
         </encoder>

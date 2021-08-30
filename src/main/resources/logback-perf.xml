@@ -21,6 +21,7 @@
         <file>target/test-output/logback-perf.log</file>
         <bufferSize>256KB</bufferSize>
         <immediateFlush>false</immediateFlush>  
+        <append>false</append>
         <encoder>
             <pattern>%d %p [%t] %c - %m%n</pattern>  
         </encoder>

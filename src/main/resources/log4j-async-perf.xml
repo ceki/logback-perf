@@ -9,6 +9,7 @@
         <param name="File" value="target/test-output/log4j-async-perf.log"/>
         <param name="immediateFlush" value="false"/>
         <param name="bufferSize" value="256000"/>
+        <param name="append" value="false" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d %p [%t] %c - %m%n"/>
         </layout>
