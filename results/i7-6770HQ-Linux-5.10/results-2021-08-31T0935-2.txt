@@ -1,0 +1,237 @@
+# JMH version: 1.29
+# VM version: JDK 16.0.1, Java HotSpot(TM) 64-Bit Server VM, 16.0.1+9-24
+# VM invoker: C:\java\jdk-16.0.1\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 1 iterations, 10 s each
+# Measurement: 3 iterations, 8 s each
+# Timeout: 10 min per iteration
+# Threads: 2 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.log4j1File
+
+# Run progress: 0,00% complete, ETA 00:03:24
+# Fork: 1 of 1
+# Warmup Iteration   1: 179,593 ops/ms
+Iteration   1: 182,286 ops/ms
+Iteration   2: 182,343 ops/ms
+Iteration   3: 183,659 ops/ms
+
+
+Result "ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.log4j1File":
+  182,763 ±(99.9%) 14,172 ops/ms [Average]
+  (min, avg, max) = (182,286, 182,763, 183,659), stdev = 0,777
+  CI (99.9%): [168,590, 196,935] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.1, Java HotSpot(TM) 64-Bit Server VM, 16.0.1+9-24
+# VM invoker: C:\java\jdk-16.0.1\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 1 iterations, 10 s each
+# Measurement: 3 iterations, 8 s each
+# Timeout: 10 min per iteration
+# Threads: 2 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.log4j2AsyncFile
+
+# Run progress: 16,67% complete, ETA 00:02:54
+# Fork: 1 of 1
+# Warmup Iteration   1: 652,431 ops/ms
+Iteration   1: 848,419 ops/ms
+Iteration   2: 594,608 ops/ms
+Iteration   3: 580,700 ops/ms
+<JMH had finished, but forked VM did not exit, are there stray running threads? Waiting 24 seconds more...>
+
+Non-finished threads:
+
+Thread[pool-2-thread-1,5,main]
+  at java.base@16.0.1/java.io.FileDescriptor.close0(Native Method)
+  at java.base@16.0.1/java.io.FileDescriptor.close(FileDescriptor.java:297)
+  at java.base@16.0.1/java.io.RandomAccessFile$1.close(RandomAccessFile.java:657)
+  at java.base@16.0.1/java.io.FileDescriptor.closeAll(FileDescriptor.java:355)
+  at java.base@16.0.1/java.io.RandomAccessFile.close(RandomAccessFile.java:655)
+  at app//org.apache.logging.log4j.core.appender.RandomAccessFileManager.closeOutputStream(RandomAccessFileManager.java:105)
+  at app//org.apache.logging.log4j.core.appender.OutputStreamManager.releaseSub(OutputStreamManager.java:122)
+  at app//org.apache.logging.log4j.core.appender.AbstractManager.stop(AbstractManager.java:86)
+  at app//org.apache.logging.log4j.core.appender.AbstractOutputStreamAppender.stop(AbstractOutputStreamAppender.java:162)
+  at app//org.apache.logging.log4j.core.appender.RandomAccessFileAppender.stop(RandomAccessFileAppender.java:136)
+  at app//org.apache.logging.log4j.core.config.AbstractConfiguration.stop(AbstractConfiguration.java:397)
+  at app//org.apache.logging.log4j.core.LoggerContext.stop(LoggerContext.java:394)
+  at app//org.apache.logging.log4j.core.async.AsyncLoggerContext.stop(AsyncLoggerContext.java:106)
+  at app//org.apache.logging.log4j.core.LoggerContext$1.run(LoggerContext.java:322)
+  at app//org.apache.logging.log4j.core.util.DefaultShutdownCallbackRegistry$RegisteredCancellable.run(DefaultShutdownCallbackRegistry.java:119)
+  at app//org.apache.logging.log4j.core.util.DefaultShutdownCallbackRegistry.run(DefaultShutdownCallbackRegistry.java:78)
+  at java.base@16.0.1/java.lang.Thread.run(Thread.java:831)
+
+Thread[DestroyJavaVM,5,main]
+  at java.base@16.0.1/java.lang.Object.wait(Native Method)
+  at java.base@16.0.1/java.lang.Thread.join(Thread.java:1301)
+  at java.base@16.0.1/java.lang.Thread.join(Thread.java:1369)
+  at java.base@16.0.1/java.lang.ApplicationShutdownHooks.runHooks(ApplicationShutdownHooks.java:107)
+  at java.base@16.0.1/java.lang.ApplicationShutdownHooks$1.run(ApplicationShutdownHooks.java:46)
+  at java.base@16.0.1/java.lang.Shutdown.runHooks(Shutdown.java:130)
+  at java.base@16.0.1/java.lang.Shutdown.shutdown(Shutdown.java:186)
+
+
+<JMH had finished, but forked VM did not exit, are there stray running threads? Waiting 19 seconds more...>
+
+Non-finished threads:
+
+Thread[pool-2-thread-1,5,main]
+  at java.base@16.0.1/java.io.FileDescriptor.close0(Native Method)
+  at java.base@16.0.1/java.io.FileDescriptor.close(FileDescriptor.java:297)
+  at java.base@16.0.1/java.io.RandomAccessFile$1.close(RandomAccessFile.java:657)
+  at java.base@16.0.1/java.io.FileDescriptor.closeAll(FileDescriptor.java:355)
+  at java.base@16.0.1/java.io.RandomAccessFile.close(RandomAccessFile.java:655)
+  at app//org.apache.logging.log4j.core.appender.RandomAccessFileManager.closeOutputStream(RandomAccessFileManager.java:105)
+  at app//org.apache.logging.log4j.core.appender.OutputStreamManager.releaseSub(OutputStreamManager.java:122)
+  at app//org.apache.logging.log4j.core.appender.AbstractManager.stop(AbstractManager.java:86)
+  at app//org.apache.logging.log4j.core.appender.AbstractOutputStreamAppender.stop(AbstractOutputStreamAppender.java:162)
+  at app//org.apache.logging.log4j.core.appender.RandomAccessFileAppender.stop(RandomAccessFileAppender.java:136)
+  at app//org.apache.logging.log4j.core.config.AbstractConfiguration.stop(AbstractConfiguration.java:397)
+  at app//org.apache.logging.log4j.core.LoggerContext.stop(LoggerContext.java:394)
+  at app//org.apache.logging.log4j.core.async.AsyncLoggerContext.stop(AsyncLoggerContext.java:106)
+  at app//org.apache.logging.log4j.core.LoggerContext$1.run(LoggerContext.java:322)
+  at app//org.apache.logging.log4j.core.util.DefaultShutdownCallbackRegistry$RegisteredCancellable.run(DefaultShutdownCallbackRegistry.java:119)
+  at app//org.apache.logging.log4j.core.util.DefaultShutdownCallbackRegistry.run(DefaultShutdownCallbackRegistry.java:78)
+  at java.base@16.0.1/java.lang.Thread.run(Thread.java:831)
+
+Thread[DestroyJavaVM,5,main]
+  at java.base@16.0.1/java.lang.Object.wait(Native Method)
+  at java.base@16.0.1/java.lang.Thread.join(Thread.java:1301)
+  at java.base@16.0.1/java.lang.Thread.join(Thread.java:1369)
+  at java.base@16.0.1/java.lang.ApplicationShutdownHooks.runHooks(ApplicationShutdownHooks.java:107)
+  at java.base@16.0.1/java.lang.ApplicationShutdownHooks$1.run(ApplicationShutdownHooks.java:46)
+  at java.base@16.0.1/java.lang.Shutdown.runHooks(Shutdown.java:130)
+  at java.base@16.0.1/java.lang.Shutdown.shutdown(Shutdown.java:186)
+
+
+
+
+Result "ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.log4j2AsyncFile":
+  674,575 ±(99.9%) 2749,570 ops/ms [Average]
+  (min, avg, max) = (580,700, 674,575, 848,419), stdev = 150,713
+  CI (99.9%): [? 0, 3424,145] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.1, Java HotSpot(TM) 64-Bit Server VM, 16.0.1+9-24
+# VM invoker: C:\java\jdk-16.0.1\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 1 iterations, 10 s each
+# Measurement: 3 iterations, 8 s each
+# Timeout: 10 min per iteration
+# Threads: 2 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.logbackFile
+
+# Run progress: 33,33% complete, ETA 00:02:46
+# Fork: 1 of 1
+# Warmup Iteration   1: 543,771 ops/ms
+Iteration   1: 550,013 ops/ms
+Iteration   2: 531,988 ops/ms
+Iteration   3: 525,125 ops/ms
+
+
+Result "ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.logbackFile":
+  535,709 ±(99.9%) 234,508 ops/ms [Average]
+  (min, avg, max) = (525,125, 535,709, 550,013), stdev = 12,854
+  CI (99.9%): [301,200, 770,217] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.1, Java HotSpot(TM) 64-Bit Server VM, 16.0.1+9-24
+# VM invoker: C:\java\jdk-16.0.1\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 1 iterations, 10 s each
+# Measurement: 3 iterations, 8 s each
+# Timeout: 10 min per iteration
+# Threads: 2 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.FileAppenderBenchmark.log4j1File
+
+# Run progress: 50,00% complete, ETA 00:01:57
+# Fork: 1 of 1
+# Warmup Iteration   1: 163,009 ops/ms
+Iteration   1: 195,880 ops/ms
+Iteration   2: 197,097 ops/ms
+Iteration   3: 202,368 ops/ms
+
+
+Result "ch.qos.logback.perf.FileAppenderBenchmark.log4j1File":
+  198,448 ±(99.9%) 62,922 ops/ms [Average]
+  (min, avg, max) = (195,880, 198,448, 202,368), stdev = 3,449
+  CI (99.9%): [135,526, 261,371] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.1, Java HotSpot(TM) 64-Bit Server VM, 16.0.1+9-24
+# VM invoker: C:\java\jdk-16.0.1\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 1 iterations, 10 s each
+# Measurement: 3 iterations, 8 s each
+# Timeout: 10 min per iteration
+# Threads: 2 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.FileAppenderBenchmark.log4j2File
+
+# Run progress: 66,67% complete, ETA 00:01:16
+# Fork: 1 of 1
+# Warmup Iteration   1: 196,179 ops/ms
+Iteration   1: 174,063 ops/ms
+Iteration   2: 174,295 ops/ms
+Iteration   3: 171,064 ops/ms
+
+
+Result "ch.qos.logback.perf.FileAppenderBenchmark.log4j2File":
+  173,141 ±(99.9%) 32,873 ops/ms [Average]
+  (min, avg, max) = (171,064, 173,141, 174,295), stdev = 1,802
+  CI (99.9%): [140,268, 206,014] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.1, Java HotSpot(TM) 64-Bit Server VM, 16.0.1+9-24
+# VM invoker: C:\java\jdk-16.0.1\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 1 iterations, 10 s each
+# Measurement: 3 iterations, 8 s each
+# Timeout: 10 min per iteration
+# Threads: 2 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.FileAppenderBenchmark.logbackFile
+
+# Run progress: 83,33% complete, ETA 00:00:37
+# Fork: 1 of 1
+# Warmup Iteration   1: 695,373 ops/ms
+Iteration   1: 662,856 ops/ms
+Iteration   2: 650,599 ops/ms
+Iteration   3: 676,534 ops/ms
+
+
+Result "ch.qos.logback.perf.FileAppenderBenchmark.logbackFile":
+  663,330 ±(99.9%) 236,692 ops/ms [Average]
+  (min, avg, max) = (650,599, 663,330, 676,534), stdev = 12,974
+  CI (99.9%): [426,638, 900,022] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:03:45
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                                        Mode  Cnt    Score      Error   Units
+AsyncWithFileAppenderBenchmark.log4j1File       thrpt    3  182,763 ±   14,172  ops/ms
+AsyncWithFileAppenderBenchmark.log4j2AsyncFile  thrpt    3  674,575 ± 2749,570  ops/ms
+AsyncWithFileAppenderBenchmark.logbackFile      thrpt    3  535,709 ±  234,508  ops/ms
+FileAppenderBenchmark.log4j1File                thrpt    3  198,448 ±   62,922  ops/ms
+FileAppenderBenchmark.log4j2File                thrpt    3  173,141 ±   32,873  ops/ms
+FileAppenderBenchmark.logbackFile               thrpt    3  663,330 ±  236,692  ops/ms
