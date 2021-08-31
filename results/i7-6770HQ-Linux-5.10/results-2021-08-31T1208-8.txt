@@ -1,0 +1,612 @@
+# JMH version: 1.29
+# VM version: JDK 16.0.1, Java HotSpot(TM) 64-Bit Server VM, 16.0.1+9-24
+# VM invoker: C:\java\jdk-16.0.1\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 2 iterations, 10 s each
+# Measurement: 4 iterations, 10 s each
+# Timeout: 3 s per iteration, ***WARNING: The timeout might be too low!***
+# Threads: 8 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.log4j1File
+
+# Run progress: 0,00% complete, ETA 00:06:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 177,513 ops/ms
+# Warmup Iteration   2: 179,945 ops/ms
+Iteration   1: 180,497 ops/ms
+Iteration   2: 179,717 ops/ms
+Iteration   3: 180,940 ops/ms
+Iteration   4: 180,515 ops/ms
+
+
+Result "ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.log4j1File":
+  180,417 ±(99.9%) 3,293 ops/ms [Average]
+  (min, avg, max) = (179,717, 180,417, 180,940), stdev = 0,510
+  CI (99.9%): [177,124, 183,711] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.1, Java HotSpot(TM) 64-Bit Server VM, 16.0.1+9-24
+# VM invoker: C:\java\jdk-16.0.1\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 2 iterations, 10 s each
+# Measurement: 4 iterations, 10 s each
+# Timeout: 3 s per iteration, ***WARNING: The timeout might be too low!***
+# Threads: 8 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.log4j2AsyncFile
+
+# Run progress: 16,67% complete, ETA 00:05:04
+# Fork: 1 of 1
+# Warmup Iteration   1: 610,755 ops/ms
+# Warmup Iteration   2: 676,669 ops/ms
+Iteration   1: 702,193 ops/ms
+Iteration   2: 606,156 ops/ms
+Iteration   3: 561,548 ops/ms
+Iteration   4: 557,368 ops/ms
+<JMH had finished, but forked VM did not exit, are there stray running threads? Waiting 24 seconds more...>
+
+Non-finished threads:
+
+Thread[pool-2-thread-1,5,main]
+  at java.base@16.0.1/java.io.FileDescriptor.close0(Native Method)
+  at java.base@16.0.1/java.io.FileDescriptor.close(FileDescriptor.java:297)
+  at java.base@16.0.1/java.io.RandomAccessFile$1.close(RandomAccessFile.java:657)
+  at java.base@16.0.1/java.io.FileDescriptor.closeAll(FileDescriptor.java:355)
+  at java.base@16.0.1/java.io.RandomAccessFile.close(RandomAccessFile.java:655)
+  at app//org.apache.logging.log4j.core.appender.RandomAccessFileManager.closeOutputStream(RandomAccessFileManager.java:105)
+  at app//org.apache.logging.log4j.core.appender.OutputStreamManager.releaseSub(OutputStreamManager.java:122)
+  at app//org.apache.logging.log4j.core.appender.AbstractManager.stop(AbstractManager.java:86)
+  at app//org.apache.logging.log4j.core.appender.AbstractOutputStreamAppender.stop(AbstractOutputStreamAppender.java:162)
+  at app//org.apache.logging.log4j.core.appender.RandomAccessFileAppender.stop(RandomAccessFileAppender.java:136)
+  at app//org.apache.logging.log4j.core.config.AbstractConfiguration.stop(AbstractConfiguration.java:397)
+  at app//org.apache.logging.log4j.core.LoggerContext.stop(LoggerContext.java:394)
+  at app//org.apache.logging.log4j.core.async.AsyncLoggerContext.stop(AsyncLoggerContext.java:106)
+  at app//org.apache.logging.log4j.core.LoggerContext$1.run(LoggerContext.java:322)
+  at app//org.apache.logging.log4j.core.util.DefaultShutdownCallbackRegistry$RegisteredCancellable.run(DefaultShutdownCallbackRegistry.java:119)
+  at app//org.apache.logging.log4j.core.util.DefaultShutdownCallbackRegistry.run(DefaultShutdownCallbackRegistry.java:78)
+  at java.base@16.0.1/java.lang.Thread.run(Thread.java:831)
+
+Thread[DestroyJavaVM,5,main]
+  at java.base@16.0.1/java.lang.Object.wait(Native Method)
+  at java.base@16.0.1/java.lang.Thread.join(Thread.java:1301)
+  at java.base@16.0.1/java.lang.Thread.join(Thread.java:1369)
+  at java.base@16.0.1/java.lang.ApplicationShutdownHooks.runHooks(ApplicationShutdownHooks.java:107)
+  at java.base@16.0.1/java.lang.ApplicationShutdownHooks$1.run(ApplicationShutdownHooks.java:46)
+  at java.base@16.0.1/java.lang.Shutdown.runHooks(Shutdown.java:130)
+  at java.base@16.0.1/java.lang.Shutdown.shutdown(Shutdown.java:186)
+
+
+<JMH had finished, but forked VM did not exit, are there stray running threads? Waiting 19 seconds more...>
+
+Non-finished threads:
+
+Thread[pool-2-thread-1,5,main]
+  at java.base@16.0.1/java.io.FileDescriptor.close0(Native Method)
+  at java.base@16.0.1/java.io.FileDescriptor.close(FileDescriptor.java:297)
+  at java.base@16.0.1/java.io.RandomAccessFile$1.close(RandomAccessFile.java:657)
+  at java.base@16.0.1/java.io.FileDescriptor.closeAll(FileDescriptor.java:355)
+  at java.base@16.0.1/java.io.RandomAccessFile.close(RandomAccessFile.java:655)
+  at app//org.apache.logging.log4j.core.appender.RandomAccessFileManager.closeOutputStream(RandomAccessFileManager.java:105)
+  at app//org.apache.logging.log4j.core.appender.OutputStreamManager.releaseSub(OutputStreamManager.java:122)
+  at app//org.apache.logging.log4j.core.appender.AbstractManager.stop(AbstractManager.java:86)
+  at app//org.apache.logging.log4j.core.appender.AbstractOutputStreamAppender.stop(AbstractOutputStreamAppender.java:162)
+  at app//org.apache.logging.log4j.core.appender.RandomAccessFileAppender.stop(RandomAccessFileAppender.java:136)
+  at app//org.apache.logging.log4j.core.config.AbstractConfiguration.stop(AbstractConfiguration.java:397)
+  at app//org.apache.logging.log4j.core.LoggerContext.stop(LoggerContext.java:394)
+  at app//org.apache.logging.log4j.core.async.AsyncLoggerContext.stop(AsyncLoggerContext.java:106)
+  at app//org.apache.logging.log4j.core.LoggerContext$1.run(LoggerContext.java:322)
+  at app//org.apache.logging.log4j.core.util.DefaultShutdownCallbackRegistry$RegisteredCancellable.run(DefaultShutdownCallbackRegistry.java:119)
+  at app//org.apache.logging.log4j.core.util.DefaultShutdownCallbackRegistry.run(DefaultShutdownCallbackRegistry.java:78)
+  at java.base@16.0.1/java.lang.Thread.run(Thread.java:831)
+
+Thread[DestroyJavaVM,5,main]
+  at java.base@16.0.1/java.lang.Object.wait(Native Method)
+  at java.base@16.0.1/java.lang.Thread.join(Thread.java:1301)
+  at java.base@16.0.1/java.lang.Thread.join(Thread.java:1369)
+  at java.base@16.0.1/java.lang.ApplicationShutdownHooks.runHooks(ApplicationShutdownHooks.java:107)
+  at java.base@16.0.1/java.lang.ApplicationShutdownHooks$1.run(ApplicationShutdownHooks.java:46)
+  at java.base@16.0.1/java.lang.Shutdown.runHooks(Shutdown.java:130)
+  at java.base@16.0.1/java.lang.Shutdown.shutdown(Shutdown.java:186)
+
+
+
+
+Result "ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.log4j2AsyncFile":
+  606,816 ±(99.9%) 434,949 ops/ms [Average]
+  (min, avg, max) = (557,368, 606,816, 702,193), stdev = 67,309
+  CI (99.9%): [171,867, 1041,765] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.1, Java HotSpot(TM) 64-Bit Server VM, 16.0.1+9-24
+# VM invoker: C:\java\jdk-16.0.1\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 2 iterations, 10 s each
+# Measurement: 4 iterations, 10 s each
+# Timeout: 3 s per iteration, ***WARNING: The timeout might be too low!***
+# Threads: 8 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.logbackFile
+
+# Run progress: 33,33% complete, ETA 00:04:31
+# Fork: 1 of 1
+# Warmup Iteration   1: 552,829 ops/ms
+# Warmup Iteration   2: 537,121 ops/ms
+Iteration   1: 539,480 ops/ms
+Iteration   2: 529,490 ops/ms
+Iteration   3: 519,073 ops/ms
+Iteration   4: 511,347 ops/ms
+
+
+Result "ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.logbackFile":
+  524,847 ±(99.9%) 79,256 ops/ms [Average]
+  (min, avg, max) = (511,347, 524,847, 539,480), stdev = 12,265
+  CI (99.9%): [445,591, 604,103] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.1, Java HotSpot(TM) 64-Bit Server VM, 16.0.1+9-24
+# VM invoker: C:\java\jdk-16.0.1\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 2 iterations, 10 s each
+# Measurement: 4 iterations, 10 s each
+# Timeout: 3 s per iteration, ***WARNING: The timeout might be too low!***
+# Threads: 8 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.FileAppenderBenchmark.log4j1File
+
+# Run progress: 50,00% complete, ETA 00:03:16
+# Fork: 1 of 1
+# Warmup Iteration   1: 153,065 ops/ms
+# Warmup Iteration   2: 156,759 ops/ms
+Iteration   1: 161,443 ops/ms
+Iteration   2: 164,837 ops/ms
+Iteration   3: 165,281 ops/ms
+Iteration   4: (*interrupt*) <failure>
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_log4j1File_jmhTest.log4j1File_Throughput(FileAppenderBenchmark_log4j1File_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_log4j1File_jmhTest.log4j1File_Throughput(FileAppenderBenchmark_log4j1File_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_log4j1File_jmhTest.log4j1File_Throughput(FileAppenderBenchmark_log4j1File_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_log4j1File_jmhTest.log4j1File_Throughput(FileAppenderBenchmark_log4j1File_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_log4j1File_jmhTest.log4j1File_Throughput(FileAppenderBenchmark_log4j1File_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_log4j1File_jmhTest.log4j1File_Throughput(FileAppenderBenchmark_log4j1File_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_log4j1File_jmhTest.log4j1File_Throughput(FileAppenderBenchmark_log4j1File_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+
+
+
+Result "ch.qos.logback.perf.FileAppenderBenchmark.log4j1File":
+  163,854 ±(99.9%) 38,303 ops/ms [Average]
+  (min, avg, max) = (161,443, 163,854, 165,281), stdev = 2,100
+  CI (99.9%): [125,551, 202,157] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.1, Java HotSpot(TM) 64-Bit Server VM, 16.0.1+9-24
+# VM invoker: C:\java\jdk-16.0.1\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 2 iterations, 10 s each
+# Measurement: 4 iterations, 10 s each
+# Timeout: 3 s per iteration, ***WARNING: The timeout might be too low!***
+# Threads: 8 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.FileAppenderBenchmark.log4j2File
+
+# Run progress: 66,67% complete, ETA 00:02:09
+# Fork: 1 of 1
+# Warmup Iteration   1: 258,548 ops/ms
+# Warmup Iteration   2: 234,120 ops/ms
+Iteration   1: 231,194 ops/ms
+Iteration   2: 233,338 ops/ms
+Iteration   3: 231,403 ops/ms
+Iteration   4: (*interrupt*) <failure>
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_log4j2File_jmhTest.log4j2File_Throughput(FileAppenderBenchmark_log4j2File_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_log4j2File_jmhTest.log4j2File_Throughput(FileAppenderBenchmark_log4j2File_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_log4j2File_jmhTest.log4j2File_Throughput(FileAppenderBenchmark_log4j2File_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_log4j2File_jmhTest.log4j2File_Throughput(FileAppenderBenchmark_log4j2File_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_log4j2File_jmhTest.log4j2File_Throughput(FileAppenderBenchmark_log4j2File_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_log4j2File_jmhTest.log4j2File_Throughput(FileAppenderBenchmark_log4j2File_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_log4j2File_jmhTest.log4j2File_Throughput(FileAppenderBenchmark_log4j2File_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+
+
+
+Result "ch.qos.logback.perf.FileAppenderBenchmark.log4j2File":
+  231,979 ±(99.9%) 21,569 ops/ms [Average]
+  (min, avg, max) = (231,194, 231,979, 233,338), stdev = 1,182
+  CI (99.9%): [210,410, 253,548] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.1, Java HotSpot(TM) 64-Bit Server VM, 16.0.1+9-24
+# VM invoker: C:\java\jdk-16.0.1\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 2 iterations, 10 s each
+# Measurement: 4 iterations, 10 s each
+# Timeout: 3 s per iteration, ***WARNING: The timeout might be too low!***
+# Threads: 8 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.FileAppenderBenchmark.logbackFile
+
+# Run progress: 83,33% complete, ETA 00:01:03
+# Fork: 1 of 1
+# Warmup Iteration   1: 662,232 ops/ms
+# Warmup Iteration   2: 658,684 ops/ms
+Iteration   1: 635,935 ops/ms
+Iteration   2: 651,772 ops/ms
+Iteration   3: 650,424 ops/ms
+Iteration   4: (*interrupt*) <failure>
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_logbackFile_jmhTest.logbackFile_Throughput(FileAppenderBenchmark_logbackFile_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_logbackFile_jmhTest.logbackFile_Throughput(FileAppenderBenchmark_logbackFile_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_logbackFile_jmhTest.logbackFile_Throughput(FileAppenderBenchmark_logbackFile_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_logbackFile_jmhTest.logbackFile_Throughput(FileAppenderBenchmark_logbackFile_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_logbackFile_jmhTest.logbackFile_Throughput(FileAppenderBenchmark_logbackFile_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_logbackFile_jmhTest.logbackFile_Throughput(FileAppenderBenchmark_logbackFile_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+java.lang.InterruptedException: sleep interrupted
+	at java.base/java.lang.Thread.sleep(Native Method)
+	at java.base/java.lang.Thread.sleep(Thread.java:336)
+	at java.base/java.util.concurrent.TimeUnit.sleep(TimeUnit.java:446)
+	at ch.qos.logback.perf.jmh_generated.FileAppenderBenchmark_logbackFile_jmhTest.logbackFile_Throughput(FileAppenderBenchmark_logbackFile_jmhTest.java:113)
+	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:470)
+	at org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call(BenchmarkHandler.java:453)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:831)
+
+
+
+
+Result "ch.qos.logback.perf.FileAppenderBenchmark.logbackFile":
+  646,044 ±(99.9%) 160,194 ops/ms [Average]
+  (min, avg, max) = (635,935, 646,044, 651,772), stdev = 8,781
+  CI (99.9%): [485,850, 806,237] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:06:19
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                                        Mode  Cnt    Score     Error   Units
+AsyncWithFileAppenderBenchmark.log4j1File       thrpt    4  180,417 ±   3,293  ops/ms
+AsyncWithFileAppenderBenchmark.log4j2AsyncFile  thrpt    4  606,816 ± 434,949  ops/ms
+AsyncWithFileAppenderBenchmark.logbackFile      thrpt    4  524,847 ±  79,256  ops/ms
+FileAppenderBenchmark.log4j1File                thrpt    3  163,854 ±  38,303  ops/ms
+FileAppenderBenchmark.log4j2File                thrpt    3  231,979 ±  21,569  ops/ms
+FileAppenderBenchmark.logbackFile               thrpt    3  646,044 ± 160,194  ops/ms
