@@ -22,7 +22,7 @@ logback-perf project, the the command to build the benchmark is:
 The command to run the benchmark is:
         
     rm target/test-output/*; # make sure to delete any files from previous runs
-    java -jar target/benchmarks.jar ".*FileAppenderBenchmark.*" -f 2 -r 4 -tu ms -wi 2 -i 6 -t $TC`
+    java -jar target/benchmarks.jar ".*FileAppenderBenchmark.*" -f 1 -tu ms -wi 2 -i 4 -to 3 -t $TC`
     
 where `$TC` stands for thread count, assuming the values in the set 
 {1, 2, 4, 8, 16, 32, 64}.
@@ -31,11 +31,12 @@ Note that before running the benchmark, be sure to delete the files under
 the `target/test-output/` folder between runs.
 
 Alternatively, you can run the `runFileAppenderBenchmark.sh` script which performs the
-above steps for you. 
+clean up, and saves the results in timestamped files.
 
 In the this spirit of result verifiability, we encourage *everyone* to
-run the `runFileAppenderBenchmak.sh` script and post their results on
-the [logback mailing lists](https://logback.qos.ch/mailinglist.html).
+run the `runFileAppenderBenchmak.sh` script and add their results under 
+the results/ folder and a sub-folder named after the CPU/host where the 
+test was run. You can then send a Pull Request in github.
 
 We feel that results provided by neutral parties, that is by
 developers not directly affiliated with the logback project, lends
