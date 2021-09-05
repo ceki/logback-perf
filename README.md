@@ -1,7 +1,7 @@
 # Logback benchmarking project
 
-This mini project benchmark logback to optimize performance. It is
-useful in comparing logback against other logging frameworks such as
+This mini benchmark project is intended to help improve logback's performance. It isa
+also useful in comparing logback against other logging frameworks such as
 log4j and log4j2.
 
 Please refer to the [logback benchmark page](http://logback.qos.ch/performance.html) for a 
@@ -12,7 +12,7 @@ Results are also viewable as a [**Google doc spreadsheet**.](https://docs.google
 # Do run the benchmark on your own
 
 We welcome all suggestions. You are also highly encouraged to run the
-benchmarks in your own computing environment.
+benchmarks in your own computing environment and file a pull request.
 
 Once you change your current folder to the foder where you cloned the 
 logback-perf project, the the command to build the benchmark is:
@@ -35,8 +35,8 @@ clean up, and saves the results in timestamped files.
 
 In the this spirit of result verifiability, we encourage *everyone* to
 run the `runFileAppenderBenchmak.sh` script and add their results under 
-the results/ folder and a sub-folder named after the CPU/host where the 
-test was run. You can then send a Pull Request in github.
+the `results` folder and a sub-folder named after the CPU/host where the 
+test was run. Please send a pull request with your results.
 
 We feel that results provided by neutral parties, that is by
 developers not directly affiliated with the logback project, lends
