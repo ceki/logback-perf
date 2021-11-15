@@ -47,13 +47,16 @@ public class AsyncWithFileAppenderBenchmark {
     public static final String MESSAGE = "This is a debug message";
     
     public static final String LOGBACK_ASYNC_FILE_PATH = "target/test-output/logback-async-perf.log";
+    public static final String LOGBACK_LLE_ASYNC_FILE_PATH = "target/test-output/logback-lle-async-perf.log";
+
     public static final String LOG4J2_ASYNC_FILE_PATH = "target/test-output/log4j2-async-perf.log";
     public static final String LOG4J_ASYNC_FILE_PATH = "target/test-output/log4j-async-perf.log";
                                                         
     Logger log4j2Logger;
     Logger log4j2RandomLogger;
-    org.slf4j.Logger slf4jLogger;
-    org.apache.log4j.Logger log4j1Logger;
+    org.slf4j.Logger slf4jLogger;          // logback
+    org.apache.log4j.Logger log4j1Logger;  // log4j1
+    org.slf4j.Logger lleLogger;            // logback-logstash-encoder
     
     @Setup
     public void setUp() throws Exception {
@@ -69,6 +72,7 @@ public class AsyncWithFileAppenderBenchmark {
         log4j2Logger = LogManager.getLogger(this.getClass());
         slf4jLogger = LoggerFactory.getLogger(this.getClass());
         log4j1Logger = org.apache.log4j.Logger.getLogger(this.getClass());
+        lleLogger = LoggerFactory.getLogger("LLE");
     }
 
     @TearDown
@@ -85,6 +89,7 @@ public class AsyncWithFileAppenderBenchmark {
     private void deleteLogFiles() {
     	System.out.println("Deleting files if existent.");
     	chattyDelete(LOGBACK_ASYNC_FILE_PATH);
+    	chattyDelete(LOGBACK_LLE_ASYNC_FILE_PATH);
        	chattyDelete(LOG4J2_ASYNC_FILE_PATH);
        	chattyDelete(LOG4J_ASYNC_FILE_PATH);
     }
@@ -107,6 +112,13 @@ public class AsyncWithFileAppenderBenchmark {
         slf4jLogger.debug(MESSAGE);
     }
 
+	@BenchmarkMode(Mode.Throughput)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+    @Benchmark
+    public void logbackLleFile() {
+        lleLogger.debug(MESSAGE);
+    }
+	
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     @Benchmark
