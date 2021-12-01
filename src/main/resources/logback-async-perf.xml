@@ -22,18 +22,19 @@
     <appender name="LLE" class="net.logstash.logback.appender.LoggingEventAsyncDisruptorAppender">
         <!-- wait until space is available in the queue instead of dropping the event -->
         <appendTimeout>-1</appendTimeout>
-
-        <appender name="LLE-FILE" class="ch.qos.logback.core.FileAppender">
-            <file>target/test-output/logback-lle-async-perf.log</file>
-            <bufferSize>256KB</bufferSize>
-            <immediateFlush>false</immediateFlush>  
-            <append>false</append>
-            <encoder>
-                <pattern>%d %p [%t] %logger - %m%n</pattern>
-            </encoder>
-        </appender>
+        <appender-ref ref="LLE-FILE" />
     </appender>
     
+    <appender name="LLE-FILE" class="ch.qos.logback.core.FileAppender">
+        <file>target/test-output/logback-lle-async-perf.log</file>
+        <bufferSize>256KB</bufferSize>
+        <immediateFlush>false</immediateFlush>  
+        <append>false</append>
+        <encoder>
+            <pattern>%d %p [%t] %logger - %m%n</pattern>
+        </encoder>
+    </appender>
+        
     
     <root level="DEBUG">
         <appender-ref ref="ASYNC" />
