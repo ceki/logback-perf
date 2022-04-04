@@ -1,5 +1,4 @@
 package ch.qos.logback.perf.caller;
-import java.lang.invoke.MethodHandles;
 
 public class CallerCompute {
 
@@ -86,8 +85,4 @@ public class CallerCompute {
         return trace[i + bump].getName();
     }
     
-    public static String getCallerViaMethodHandles() {
-       Class clazz = MethodHandles.lookup().lookupClass();
-       return clazz.getCanonicalName();
-    }
 }

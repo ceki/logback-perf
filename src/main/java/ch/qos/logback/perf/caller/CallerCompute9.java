@@ -1,24 +1,23 @@
 package ch.qos.logback.perf.caller;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.lang.StackWalker.StackFrame; 
+import java.lang.StackWalker.StackFrame;
+import java.util.List; 
 
 public class CallerCompute9 {
 
     static private StackWalker WALKER = StackWalker.getInstance();
-    
+    static String THIS_CLASS_NAME = CallerCompute9.class.getName();
+      
     static public String getCallerClass9(int bump) {
         
-        String thisClassName = CallerCompute9.class.getName();
-        
-        List<StackFrame> frames = WALKER.walk(s -> s.limit(4).collect(Collectors.toList()));
+        //List<StackFrame> frames = WALKER.walk(s -> s.limit(4).collect(Collectors.toList()));
+        List<StackFrame> frames = WALKER.walk(s -> s.limit(4).toList());
                       
         int frameCount = frames.size();
         
         // Advance until CallerCompute9 is found
         int i;
         for (i = 0; i < frameCount; i++) {
-            if (thisClassName.equals(frames.get(i).getClassName()))
+            if (THIS_CLASS_NAME.equals(frames.get(i).getClassName()))
                 break;
         }
 

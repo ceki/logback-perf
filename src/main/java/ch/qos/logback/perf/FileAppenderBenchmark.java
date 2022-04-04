@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * Benchmarks Log4j 2, Log4j 1, Logback and JUL using the DEBUG level which is
+ * Benchmarks Log4j 2, Reload4j, Logback and JUL using the DEBUG level which is
  * enabled for this test. The configuration for each uses a FileAppender
  */
 // HOW TO RUN THIS TEST
@@ -52,7 +52,7 @@ public class FileAppenderBenchmark {
     
     Logger log4j2Logger;
     org.slf4j.Logger slf4jLogger;
-    org.apache.log4j.Logger log4j1Logger;
+    org.apache.log4j.Logger reload4jLogger;
     java.util.logging.Logger julLogger;
     String outFolder = "";
     
@@ -71,7 +71,7 @@ public class FileAppenderBenchmark {
         
         log4j2Logger = LogManager.getLogger(loggerName);
         slf4jLogger = LoggerFactory.getLogger(loggerName);
-        log4j1Logger = org.apache.log4j.Logger.getLogger(loggerName);
+        reload4jLogger = org.apache.log4j.Logger.getLogger(loggerName);
         
     }
 
@@ -112,7 +112,7 @@ public class FileAppenderBenchmark {
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     @Benchmark
-    public void log4j1File() {
-        log4j1Logger.debug(MESSAGE);
+    public void reload4jFile() {
+    	reload4jLogger.debug(MESSAGE);
     }
 }

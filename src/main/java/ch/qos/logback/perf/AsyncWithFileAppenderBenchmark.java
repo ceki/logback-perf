@@ -53,7 +53,7 @@ public class AsyncWithFileAppenderBenchmark {
     Logger log4j2Logger;
     Logger log4j2RandomLogger;
     org.slf4j.Logger slf4jLogger;
-    org.apache.log4j.Logger log4j1Logger;
+    org.apache.log4j.Logger reload4jLogger;
     
     @Setup
     public void setUp() throws Exception {
@@ -68,7 +68,7 @@ public class AsyncWithFileAppenderBenchmark {
 
         log4j2Logger = LogManager.getLogger(this.getClass());
         slf4jLogger = LoggerFactory.getLogger(this.getClass());
-        log4j1Logger = org.apache.log4j.Logger.getLogger(this.getClass());
+        reload4jLogger = org.apache.log4j.Logger.getLogger(this.getClass());
     }
 
     @TearDown
@@ -117,7 +117,7 @@ public class AsyncWithFileAppenderBenchmark {
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     @Benchmark
-    public void log4j1File() {
-        log4j1Logger.debug(MESSAGE);
+    public void reload4jFile() {
+    	reload4jLogger.debug(MESSAGE);
     }
 }

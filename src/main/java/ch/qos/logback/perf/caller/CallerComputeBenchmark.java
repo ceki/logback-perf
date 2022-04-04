@@ -16,21 +16,21 @@ public class CallerComputeBenchmark {
 	@OutputTimeUnit(TimeUnit.MILLISECONDS)
 	@Benchmark
 	public void benchmarkgetCallingClassViaSecurityManager() {
-		String result = CallerCompute.getCallingClassViaSecurityManager(1);
+		CallerCompute.getCallingClassViaSecurityManager(1);
 	}
 
-	@BenchmarkMode(Mode.Throughput)
-	@OutputTimeUnit(TimeUnit.MILLISECONDS)
-	@Benchmark
-	public void benchmarkgetCallerClassViaThreadAPI() {
-		String result = CallerCompute.getCallerClassViaThreadAPI(1);
-	}
+//	@BenchmarkMode(Mode.Throughput)
+//	@OutputTimeUnit(TimeUnit.MILLISECONDS)
+//	@Benchmark
+//	public void benchmarkgetCallerClassViaThreadAPI() {
+//		String result = CallerCompute.getCallerClassViaThreadAPI(1);
+//	}
 
 	@BenchmarkMode(Mode.Throughput)
 	@OutputTimeUnit(TimeUnit.MILLISECONDS)
 	@Benchmark
 	public void benchmarWalkerAPI() {
-		String result = CallerCompute9.getCallerClass9(1);
+		CallerCompute9.getCallerClass9(1);
 	}
 
 }
