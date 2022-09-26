@@ -1,0 +1,183 @@
+# JMH version: 1.29
+# VM version: JDK 16.0.2, Java HotSpot(TM) 64-Bit Server VM, 16.0.2+7-67
+# VM invoker: C:\java\jdk-16.0.2\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 2 iterations, 10 s each
+# Measurement: 4 iterations, 60 s each
+# Timeout: 3 s per iteration, ***WARNING: The timeout might be too low!***
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.log4j1File
+
+# Run progress: 0.00% complete, ETA 00:26:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 1173.543 ops/ms
+# Warmup Iteration   2: 1146.693 ops/ms
+Iteration   1: 1162.889 ops/ms
+Iteration   2: 290.897 ops/ms
+Iteration   3: 187.019 ops/ms
+Iteration   4: 186.476 ops/ms
+
+
+Result "ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.log4j1File":
+  456.820 ±(99.9%) 3058.241 ops/ms [Average]
+  (min, avg, max) = (186.476, 456.820, 1162.889), stdev = 473.266
+  CI (99.9%): [≈ 0, 3515.061] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.2, Java HotSpot(TM) 64-Bit Server VM, 16.0.2+7-67
+# VM invoker: C:\java\jdk-16.0.2\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 2 iterations, 10 s each
+# Measurement: 4 iterations, 60 s each
+# Timeout: 3 s per iteration, ***WARNING: The timeout might be too low!***
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.log4j2AsyncFile
+
+# Run progress: 16.67% complete, ETA 00:21:46
+# Fork: 1 of 1
+# Warmup Iteration   1: 317.693 ops/ms
+# Warmup Iteration   2: 318.271 ops/ms
+Iteration   1: 325.104 ops/ms
+Iteration   2: 323.242 ops/ms
+Iteration   3: 319.670 ops/ms
+Iteration   4: 328.815 ops/ms
+
+
+Result "ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.log4j2AsyncFile":
+  324.208 ±(99.9%) 24.623 ops/ms [Average]
+  (min, avg, max) = (319.670, 324.208, 328.815), stdev = 3.810
+  CI (99.9%): [299.585, 348.831] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.2, Java HotSpot(TM) 64-Bit Server VM, 16.0.2+7-67
+# VM invoker: C:\java\jdk-16.0.2\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 2 iterations, 10 s each
+# Measurement: 4 iterations, 60 s each
+# Timeout: 3 s per iteration, ***WARNING: The timeout might be too low!***
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.logbackFile
+
+# Run progress: 33.33% complete, ETA 00:17:30
+# Fork: 1 of 1
+# Warmup Iteration   1: 1739.701 ops/ms
+# Warmup Iteration   2: 1050.645 ops/ms
+Iteration   1: 1291.097 ops/ms
+Iteration   2: 454.736 ops/ms
+Iteration   3: 184.157 ops/ms
+Iteration   4: 163.182 ops/ms
+
+
+Result "ch.qos.logback.perf.AsyncWithFileAppenderBenchmark.logbackFile":
+  523.293 ±(99.9%) 3417.157 ops/ms [Average]
+  (min, avg, max) = (163.182, 523.293, 1291.097), stdev = 528.809
+  CI (99.9%): [≈ 0, 3940.450] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.2, Java HotSpot(TM) 64-Bit Server VM, 16.0.2+7-67
+# VM invoker: C:\java\jdk-16.0.2\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 2 iterations, 10 s each
+# Measurement: 4 iterations, 60 s each
+# Timeout: 3 s per iteration, ***WARNING: The timeout might be too low!***
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.FileAppenderBenchmark.log4j1File
+
+# Run progress: 50.00% complete, ETA 00:13:07
+# Fork: 1 of 1
+# Warmup Iteration   1: 288.413 ops/ms
+# Warmup Iteration   2: 302.022 ops/ms
+Iteration   1: 213.870 ops/ms
+Iteration   2: 207.311 ops/ms
+Iteration   3: 286.700 ops/ms
+Iteration   4: (*interrupt*) (*interrupt*) 231.935 ops/ms
+
+
+Result "ch.qos.logback.perf.FileAppenderBenchmark.log4j1File":
+  234.954 ±(99.9%) 232.852 ops/ms [Average]
+  (min, avg, max) = (207.311, 234.954, 286.700), stdev = 36.034
+  CI (99.9%): [2.102, 467.806] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.2, Java HotSpot(TM) 64-Bit Server VM, 16.0.2+7-67
+# VM invoker: C:\java\jdk-16.0.2\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 2 iterations, 10 s each
+# Measurement: 4 iterations, 60 s each
+# Timeout: 3 s per iteration, ***WARNING: The timeout might be too low!***
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.FileAppenderBenchmark.log4j2File
+
+# Run progress: 66.67% complete, ETA 00:08:47
+# Fork: 1 of 1
+# Warmup Iteration   1: 1096.008 ops/ms
+# Warmup Iteration   2: 924.558 ops/ms
+Iteration   1: 431.020 ops/ms
+Iteration   2: 359.289 ops/ms
+Iteration   3: 227.540 ops/ms
+Iteration   4: (*interrupt*) (*interrupt*) 233.516 ops/ms
+
+
+Result "ch.qos.logback.perf.FileAppenderBenchmark.log4j2File":
+  312.841 ±(99.9%) 642.879 ops/ms [Average]
+  (min, avg, max) = (227.540, 312.841, 431.020), stdev = 99.486
+  CI (99.9%): [≈ 0, 955.720] (assumes normal distribution)
+
+
+# JMH version: 1.29
+# VM version: JDK 16.0.2, Java HotSpot(TM) 64-Bit Server VM, 16.0.2+7-67
+# VM invoker: C:\java\jdk-16.0.2\bin\java.exe
+# VM options: <none>
+# Blackhole mode: full + dont-inline hint
+# Warmup: 2 iterations, 10 s each
+# Measurement: 4 iterations, 60 s each
+# Timeout: 3 s per iteration, ***WARNING: The timeout might be too low!***
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: ch.qos.logback.perf.FileAppenderBenchmark.logbackFile
+
+# Run progress: 83.33% complete, ETA 00:04:24
+# Fork: 1 of 1
+# Warmup Iteration   1: 990.537 ops/ms
+# Warmup Iteration   2: 876.329 ops/ms
+Iteration   1: 902.930 ops/ms
+Iteration   2: 365.496 ops/ms
+Iteration   3: 234.522 ops/ms
+Iteration   4: (*interrupt*) (*interrupt*) 233.913 ops/ms
+
+
+Result "ch.qos.logback.perf.FileAppenderBenchmark.logbackFile":
+  434.216 ±(99.9%) 2058.440 ops/ms [Average]
+  (min, avg, max) = (233.913, 434.216, 902.930), stdev = 318.546
+  CI (99.9%): [≈ 0, 2492.655] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:26:28
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                                        Mode  Cnt    Score      Error   Units
+AsyncWithFileAppenderBenchmark.log4j1File       thrpt    4  456.820 ± 3058.241  ops/ms
+AsyncWithFileAppenderBenchmark.log4j2AsyncFile  thrpt    4  324.208 ±   24.623  ops/ms
+AsyncWithFileAppenderBenchmark.logbackFile      thrpt    4  523.293 ± 3417.157  ops/ms
+FileAppenderBenchmark.log4j1File                thrpt    4  234.954 ±  232.852  ops/ms
+FileAppenderBenchmark.log4j2File                thrpt    4  312.841 ±  642.879  ops/ms
+FileAppenderBenchmark.logbackFile               thrpt    4  434.216 ± 2058.440  ops/ms

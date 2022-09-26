@@ -1,5 +1,7 @@
 package ch.qos.logback.perf.caller;
 
+import java.lang.invoke.MethodHandles;
+
 public class CallerCompute {
 
     private static ClassContextSecurityManager SECURITY_MANAGER;
@@ -85,4 +87,10 @@ public class CallerCompute {
         return trace[i + bump].getName();
     }
     
+    public static Class<?> aClass;
+    
+    public static String getCallingClassViaMethondHander(int bump) {
+    	aClass = MethodHandles.lookup().lookupClass();
+		return aClass.getName();
+    }
 }
