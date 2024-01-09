@@ -17,8 +17,8 @@
         <uberjar.name>benchmarks</uberjar.name>
         <!-- <lb.version>1.3.0-alpha10-SNAPSHOT</lb.version> -->
         <!-- <lb.version>1.3.0-alpha9</lb.version>  -->
-        <lb.version>1.4.2-SNAPSHOT</lb.version>
-        <slf4j.version>2.0.1</slf4j.version>
+        <lb.version>1.4.14</lb.version>
+        <slf4j.version>2.0.11</slf4j.version>
         <!--<reloadj.version>1.2.20-SNAPSHOT</reloadj.version> -->
         <reloadj.version>1.2.19</reloadj.version>
         <log4j2.version>2.17.2</log4j2.version>

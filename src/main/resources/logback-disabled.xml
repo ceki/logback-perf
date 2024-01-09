@@ -1,0 +1,10 @@
+<configuration debug="true">
+
+    <appender name="NOP" class="ch.qos.logback.perf.NOPAppender">
+
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="NOP" />
+    </root>
+</configuration>
