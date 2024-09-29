@@ -21,7 +21,7 @@
         <slf4j.version>2.0.11</slf4j.version>
         <!--<reloadj.version>1.2.20-SNAPSHOT</reloadj.version> -->
         <reloadj.version>1.2.19</reloadj.version>
-        <log4j2.version>2.17.2</log4j2.version>
+        <log4j2.version>2.24.1</log4j2.version>
     </properties>
 
     <dependencies>
