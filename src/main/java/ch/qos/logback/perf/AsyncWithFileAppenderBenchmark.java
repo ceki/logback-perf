@@ -17,18 +17,14 @@
 package ch.qos.logback.perf;
 
 import java.io.File;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.helpers.Loader;
+import org.apache.log4j.xml.DOMConfigurator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.Setup;
-import org.openjdk.jmh.annotations.State;
-import org.openjdk.jmh.annotations.TearDown;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.ChainedOptionsBuilder;
 import org.openjdk.jmh.runner.options.Options;
@@ -51,13 +47,41 @@ public class AsyncWithFileAppenderBenchmark {
 
     public static final String LOGBACK_ASYNC_FILE_PATH = "target/test-output/logback-async-perf.log";
     public static final String LOG4J2_ASYNC_FILE_PATH = "target/test-output/log4j2-async-perf.log";
-    public static final String LOG4J_ASYNC_FILE_PATH = "target/test-output/log4j-async-perf.log";
-    //public static final String LOG4J_ASYNC_FILE_PATH = "target/test-output/log4j-new-async-perf.log";
+    public static final String LOG4J1_ASYNC_FILE_PATH = "target/test-output/log4j1-async-perf.log";
+    public static final String LOG4J1_NEW_ASYNC_FILE_PATH = "target/test-output/log4j1-new-async-perf.log";
+
+    public static final String LOG4J1_ASYNC_CONFIGURATION_FILE = "log4j1-async-perf.xml";
+    public static final String LOG4J1_NEW_ASYNC_CONFIGURATION_FILE = "log4j1-new-async-perf.xml";
 
     Logger log4j2Logger;
     Logger log4j2RandomLogger;
     org.slf4j.Logger slf4jLogger;
     org.apache.log4j.Logger reload4jLogger;
+
+    @State(Scope.Benchmark)
+    public static class Reload4jThreadState {
+        //@Param({LOG4J1_ASYNC_CONFIGURATION_FILE, LOG4J1_NEW_ASYNC_CONFIGURATION_FILE})
+        @Param({ LOG4J1_NEW_ASYNC_CONFIGURATION_FILE})
+
+        String configFile;
+
+        //@Param({"1", "2", "16"})
+        //nt threadCount;
+
+        @Setup
+        public void setup() {
+            org.apache.log4j.LogManager.getLoggerRepository().resetConfiguration();
+            URL url = Loader.getResource(configFile);
+            DOMConfigurator.configure(url);
+            System.out.println("Reload4jThreadState setup with config file: " + configFile);
+        }
+        @TearDown
+        public void tearDown() {
+            org.apache.log4j.LogManager.getLoggerRepository().resetConfiguration();
+            System.out.println("------------Reload4jThreadState tearDown");
+        }
+
+    }
 
     @Setup
     public void setUp() throws Exception {
@@ -66,8 +90,8 @@ public class AsyncWithFileAppenderBenchmark {
         System.setProperty("log4j.configurationFile", "log4j2-async-perf.xml");
         System.setProperty("logback.configurationFile", "logback-async-perf.xml");
         //System.setProperty("log4j.configuration", "log4j-async-perf.xml");
-        System.setProperty("log4j.configuration", "log4j-new-async-perf.xml");
-        deleteLogFiles();
+        //System.setProperty("log4j.configuration", LOG4J1_ASYNC_CONFIGURATION_FILE);
+        /////deleteLogFiles();
 
         log4j2Logger = LogManager.getLogger(this.getClass());
         slf4jLogger = LoggerFactory.getLogger(this.getClass());
@@ -89,7 +113,8 @@ public class AsyncWithFileAppenderBenchmark {
         System.out.println("Deleting files if existent.");
         chattyDelete(LOGBACK_ASYNC_FILE_PATH);
         chattyDelete(LOG4J2_ASYNC_FILE_PATH);
-        chattyDelete(LOG4J_ASYNC_FILE_PATH);
+        chattyDelete(LOG4J1_ASYNC_FILE_PATH);
+        chattyDelete(LOG4J1_NEW_ASYNC_FILE_PATH);
     }
 
     private void chattyDelete(String path) {
@@ -105,7 +130,7 @@ public class AsyncWithFileAppenderBenchmark {
 
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    @Benchmark
+    //@Benchmark
     public void logbackFile() {
         slf4jLogger.debug(MESSAGE);
     }
@@ -114,13 +139,18 @@ public class AsyncWithFileAppenderBenchmark {
     //@OutputTimeUnit(TimeUnit.MILLISECONDS)
    // @Benchmark
     public void log4j2AsyncFile() {
-        log4j2Logger.debug(MESSAGE);
+        //log4j2Logger.debug(MESSAGE);
     }
 
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
     @Benchmark
-    public void reload4jFile() {
+    public void reload4jFile(Reload4jThreadState reload4jThreadState) {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         reload4jLogger.debug(MESSAGE);
     }
 
@@ -129,11 +159,11 @@ public class AsyncWithFileAppenderBenchmark {
                         .include(AsyncWithFileAppenderBenchmark.class.getName() + ".*")
                         .mode(Mode.Throughput)
                         .timeUnit(TimeUnit.MILLISECONDS)
-                        .warmupTime(TimeValue.seconds(3))
+                        .warmupTime(TimeValue.seconds(1))
                         .warmupIterations(2)
                         .measurementIterations(2)
-                        .measurementTime(TimeValue.seconds(30))
-                        .timeout(TimeValue.seconds(2))
+                        .measurementTime(TimeValue.seconds(10*6))
+                        //.timeout(TimeValue.seconds(5))
                         .forks(1)
                         .shouldFailOnError(true)
                         .shouldDoGC(true)

@@ -1,0 +1,24 @@
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+    <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+		<appender-ref ref="FILE" />
+	</appender>
+	
+    <appender name="FILE" class="org.apache.log4j.FileAppender">
+        <param name="File" value="target/test-output/log4j1-async-perf.log"/>
+        <param name="immediateFlush" value="false"/>
+        <param name="bufferSize" value="256000"/>
+        <param name="append" value="false" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %p [%t] %c - %m%n"/>
+        </layout>
+    </appender>
+    
+    <root>
+        <level value="debug"/>
+        <appender-ref ref="ASYNC"/>
+    </root>
+    
+
+</log4j:configuration>
