@@ -1,9 +1,4 @@
 <configuration debug="false">
-	
-	<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
-	  <discardingThreshold>0</discardingThreshold>
-	  <appender-ref ref="FILE" />
-	</appender>
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>target/test-output/logback-async-perf.log</file>
@@ -13,6 +8,11 @@
         <encoder>
             <pattern>%d %p [%t] %logger - %m%n</pattern>  
         </encoder>
+    </appender>
+
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <appender-ref ref="FILE" />
     </appender>
 
     <root level="DEBUG">
