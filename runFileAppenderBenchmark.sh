@@ -12,6 +12,8 @@
 #   For the most stable results, run with PERF_TARGET on tmpfs or SSD:
 #     PERF_TARGET=/dev/shm/logback-perf-target/   ./runFileAppenderBenchmark.sh
 #
+# To create a ramdisk on Linux, you can use the following command (requires root privileges):
+# sudo mount -t tmpfs -o size=1G tmpfs /mnt/ramdisk
 
 if [ -z "${MVN+set}" ]
 then
@@ -27,15 +29,15 @@ echo "Results will be output into file results-${DATE}-[threadCount].txt"
 sleep 1
 
 DATE=$(date  '+%Y-%m-%dT%H%M')
-PERF_TARGET=/tmp/perf-target/
-#PERF_TARGET=
+#PERF_TARGET=/tmp/perf-target/
+PERF_TARGET=/mnt/ramdisk/perf-target/
+
+$MVN clean
+$MVN install
 
 #for TC in 1 2 4 8 16 32 64;
 for TC in 1;          
 do
-    echo $MVN clean
-    $MVN clean
-    $MVN install
     echo "Number of threads $TC"
     #
     # IMPORTANT: The parameters below are chosen to reduce variance.

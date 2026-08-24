@@ -1,0 +1,39 @@
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+-->
+<configuration debug="false">
+    <import class="ch.qos.logback.core.FileAppender"/>
+    <import class="ch.qos.steward.classic.stream.KryoEncoder"/>
+
+    <appender name="FILE" class="FileAppender">
+        <file>${perfTarget:-target/test-output/}kryo-encoder-perf.kryo</file>
+        <!-- Larger buffer reduces frequency of writes to the OS page cache.
+             On rotating media this can modestly reduce variance caused by
+             the kernel writeback flusher. -->
+        <bufferSize>1MB</bufferSize>
+        <immediateFlush>false</immediateFlush>
+        <append>false</append>
+        <encoder class="KryoEncoder">
+            <serializerType>Custom</serializerType>
+            <streamVersion>4</streamVersion>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>
