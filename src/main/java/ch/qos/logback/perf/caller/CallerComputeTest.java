@@ -1,9 +1,10 @@
 package ch.qos.logback.perf.caller;
 
-import static org.junit.Assert.assertEquals;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CallerComputeTest {
 
@@ -14,7 +15,7 @@ public class CallerComputeTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void testViaReflection() {
         String result = CallerCompute.getCallingClassViaReflection();
         assertEquals(CallerComputeTest.class.getName(), result);

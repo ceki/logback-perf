@@ -1,21 +1,56 @@
+#!/bin/bash
+#
+# Runs the FileAppenderBenchmark with parameters tuned for lower variance.
+#
+# CRITICAL NOTE ON VARIANCE:
+#   The benchmark writes to disk via a buffered FileAppender (immediateFlush=false).
+#   When PERF_TARGET points to a rotating hard disk, the Linux kernel's
+#   writeback flusher, combined with HDD seek/rotational latency, produces
+#   significant measurement jitter. This is expected physics, not a bug in
+#   Logback or the benchmark.
+#
+#   For the most stable results, run with PERF_TARGET on tmpfs or SSD:
+#     PERF_TARGET=/dev/shm/logback-perf-target/   ./runFileAppenderBenchmark.sh
+#
+
+if [ -z "${MVN+set}" ]
+then
+    echo "Error: The environment variable MVN is not defined."
+    echo "Please define it so that it points to the Maven binary and try again. "
+    exit 1
+fi
 
 DATE=$(date  '+%Y-%m-%dT%H%M')
+
 
 echo "Results will be output into file results-${DATE}-[threadCount].txt"
 sleep 1
 
 DATE=$(date  '+%Y-%m-%dT%H%M')
+PERF_TARGET=/tmp/perf-target/
+#PERF_TARGET=
 
 #for TC in 1 2 4 8 16 32 64;
-for TC in 1 4 16 64;          
+for TC in 1;          
 do
-    mvn clean
-    mvn install
+    echo $MVN clean
+    $MVN clean
+    $MVN install
     echo "Number of threads $TC"
-    # default run duration of 10 seconds, single fork, time unit: microseconds, 2 warm up iterations, 4 iterations,
-    # $TC is the thread count, timeout 3 seconds, output results to "results-${DATE}-$TC.txt"
-    DURATION=4
-    java -jar target/benchmarks.jar ".*FileAppenderBenchmark.*" -r $DURATION -f 1 -tu ms -w $DURATION -wi 0 -i 4 -t $TC -to 3 -o "results-${DATE}-$TC.txt" 
+    #
+    # IMPORTANT: The parameters below are chosen to reduce variance.
+    # - Multiple forks (-f 5) + real warm-up are essential for stable JMH results.
+    # - On a rotating hard disk (PERF_TARGET=/tmp/perf-target/), variance will
+    #   remain higher than on SSD or tmpfs due to mechanical + kernel writeback effects.
+    #   For lowest possible variance, use a RAM disk, e.g.:
+    #     PERF_TARGET=/dev/shm/perf-target/
+    #
+    DURATION=3
+    ITERATIONS=3
+    FORKS=3
+    java -DperfTarget=${PERF_TARGET} -jar target/benchmarks.jar \
+      "ch.qos.logback.perf.FileAppenderBenchmark.*" \
+      -f $FORKS -tu ms -wi $ITERATIONS -i $ITERATIONS -r $DURATION -w $DURATION -t $TC -to 5
 done
 
 

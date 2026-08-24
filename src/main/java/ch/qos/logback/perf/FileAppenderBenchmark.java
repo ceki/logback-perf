@@ -19,49 +19,82 @@ package ch.qos.logback.perf;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.Logger;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Fork;
+import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
+import org.openjdk.jmh.annotations.Warmup;
 import org.slf4j.LoggerFactory;
 
 
 /**
- * Benchmarks Log4j 2, Reload4j, Logback and JUL using the DEBUG level which is
- * enabled for this test. The configuration for each uses a FileAppender
+ * Benchmarks Logback (and optionally other frameworks) using a FileAppender
+ * writing to disk.
+ *
+ * IMPORTANT FOR LOW VARIANCE RESULTS:
+ * - This benchmark is I/O bound. On a rotating hard disk (HDD), kernel
+ *   writeback flusher behavior, seek times and rotational latency cause
+ *   significant run-to-run variance even with identical parameters.
+ * - For stable, low-variance numbers, point the "perfTarget" system property
+ *   to a tmpfs (RAM disk) or a fast SSD. Example:
+ *     -DperfTarget=/dev/shm/perf-target/
  */
-// HOW TO RUN THIS TEST
-// java -jar logback-perf/target/benchmarks.jar ".*FileAppenderBenchmark.*" -f 1
-// -wi 10 -i 20
+// HOW TO RUN THIS TEST (recommended parameters for lower variance)
+// java -jar target/benchmarks.jar ".*FileAppenderBenchmark.*" -f 5 -wi 5 -i 10 -r 10 -w 10 -tu ms -t 1
 //
-// RUNNING THIS TEST WITH 4 THREADS:
-// java -jar logback-perf/target/benchmarks.jar ".*FileAppenderBenchmark.*" -f 1
-// -wi 10 -i 20 -t 4
+// With more threads:
+// java -jar target/benchmarks.jar ".*FileAppenderBenchmark.*" -f 5 -wi 5 -i 10 -r 10 -w 10 -tu ms -t 4
+
+// Historical observations (illustrative only):
+// FileAppenderBenchmark.logbackFile  thrpt    4  2735.624 ± 869.311  ops/ms  (HD)   <-- high variance typical on HDD
+// FileAppenderBenchmark.logbackFile  thrpt    4  7098.028 ± 1508.44  ops/ms  (SSD)
+
+
 @State(Scope.Benchmark)
+@Fork(value = 3)
+@Warmup(iterations = 3, time = 3, timeUnit = TimeUnit.SECONDS)
+@Measurement(iterations = 3, time = 3, timeUnit = TimeUnit.SECONDS)
+@BenchmarkMode(Mode.Throughput)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class FileAppenderBenchmark {
     public static final String MESSAGE = "This is a debug message";
-    public static final String LOGBACK_FILE_PATH = "target/test-output/logback-perf.log";
-    public static final String LOG4J2_FILE_PATH = "target/test-output/log4j2-perf.log";
-    public static final String LOG4J_FILE_PATH = "target/test-output/log4j-perf.log";
-    
-    Logger log4j2Logger;
+    public static String LOGBACK_FILE_PATH = "target/test-output/logback-perf.log";
+    public static String LOG4J2_FILE_PATH = "target/test-output/log4j2-perf.log";
+    public static String LOG4J_FILE_PATH = "target/test-output/log4j-perf.log";
+
+    public static final String PERF_TARGET_KEY = "perfTarget";
+    public static final String PERF_TARGET_DEFAULT_VALUE = "target/test-output/";
+    //Logger log4j2Logger;
     org.slf4j.Logger slf4jLogger;
     org.apache.log4j.Logger reload4jLogger;
     java.util.logging.Logger julLogger;
     String outFolder = "";
-    
-    
+
+    // 
     @Setup
     public void setUp() throws Exception {
+
+        String perfTarget = System.getProperty(PERF_TARGET_KEY);
+        if(perfTarget == null || perfTarget.trim().isEmpty()) {
+            System.out.printf("System property '%s' is not set or empty. Using default value: '%s'%n", PERF_TARGET_KEY, PERF_TARGET_DEFAULT_VALUE);
+            System.setProperty(PERF_TARGET_KEY, PERF_TARGET_DEFAULT_VALUE);
+            perfTarget = System.getProperty(PERF_TARGET_KEY);
+        }
+
         System.setProperty("log4j.configurationFile", "log4j2-perf.xml");
         System.setProperty("logback.configurationFile", "logback-perf.xml");
         System.setProperty("log4j.configuration", "log4j-perf.xml");
+
+        LOGBACK_FILE_PATH = perfTarget+"logback-perf.log";
+        LOG4J2_FILE_PATH  = perfTarget+"log4j2-perf.log";
+        LOG4J_FILE_PATH   = perfTarget+"log4j-perf.log";
 
         outFolder = System.getProperty("outFolder", "");
         
@@ -69,9 +102,9 @@ public class FileAppenderBenchmark {
 
         String loggerName =       "ch.qos.logback.perf.FileAppenderBenchmark";
         
-        log4j2Logger = LogManager.getLogger(loggerName);
+        //log4j2Logger = LogManager.getLogger(loggerName);
         slf4jLogger = LoggerFactory.getLogger(loggerName);
-        reload4jLogger = org.apache.log4j.Logger.getLogger(loggerName);
+        //reload4jLogger = org.apache.log4j.Logger.getLogger(loggerName);
         
     }
 
@@ -86,21 +119,33 @@ public class FileAppenderBenchmark {
 
     private void deleteLogFiles() {
         final File logbackFile = new File(LOGBACK_FILE_PATH);
-        logbackFile.delete();
+
+        long logbackFileLen = logbackFile.length();
+
+        if(logbackFile.delete()) {
+            System.out.println("Deleted logback file: " + logbackFile.getAbsolutePath() + " of length " + logbackFileLen);
+        }
         
         final File log4jFile = new File(LOG4J_FILE_PATH);
-        log4jFile.delete();
+        long log4jFileLen = log4jFile.length();
+
+        if(log4jFile.delete()) {
+            System.out.println("Deleted log4j file: " + log4jFile.getAbsolutePath() + " of length " + log4jFileLen);
+        }
         
         final File log4j2File = new File(LOG4J2_FILE_PATH);
-        log4j2File.delete();
+        long log4j2FileLen = log4j2File.length();
+        if(log4j2File.delete()) {
+            System.out.println("Deleted log4j2 file: " + log4j2File.getAbsolutePath()+" of length " + log4j2FileLen);
+        }
     }
 
-    @BenchmarkMode(Mode.Throughput)
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    @Benchmark
-    public void log4j2File() {
-        log4j2Logger.debug(MESSAGE);
-    }
+    //@BenchmarkMode(Mode.Throughput)
+    //@OutputTimeUnit(TimeUnit.MILLISECONDS)
+    //@Benchmark
+    //public void log4j2File() {
+    //    log4j2Logger.debug(MESSAGE);
+    //}
     
     @BenchmarkMode(Mode.Throughput)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
@@ -109,9 +154,9 @@ public class FileAppenderBenchmark {
         slf4jLogger.debug(MESSAGE);
     }
 
-    @BenchmarkMode(Mode.Throughput)
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    @Benchmark
+    //@BenchmarkMode(Mode.Throughput)
+    //@OutputTimeUnit(TimeUnit.MILLISECONDS)
+    //@Benchmark
     public void reload4jFile() {
     	reload4jLogger.debug(MESSAGE);
     }

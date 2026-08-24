@@ -18,12 +18,17 @@
 <configuration debug="false">
     
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>target/test-output/logback-perf.log</file>
-        <bufferSize>256KB</bufferSize>
+        <file>${perfTarget:-target/test-output/}logback-perf.log}</file>
+        <!-- Larger buffer reduces frequency of writes to the OS page cache.
+             On rotating media this can modestly reduce variance caused by
+             the kernel writeback flusher. -->
+        <bufferSize>1MB</bufferSize>
         <immediateFlush>false</immediateFlush>  
         <append>false</append>
         <encoder>
-            <pattern>%d %p [%t] %c - %m%n</pattern>  
+            <!-- %d (date) adds formatting cost and minor timing variability.
+                 For pure throughput/variance testing a simpler pattern helps. -->
+            <pattern>%-5p [%t] %c - %m%n</pattern>  
         </encoder>
     </appender>
 

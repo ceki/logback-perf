@@ -17,12 +17,15 @@
         <uberjar.name>benchmarks</uberjar.name>
         <!-- <lb.version>1.3.0-alpha10-SNAPSHOT</lb.version> -->
         <!-- <lb.version>1.3.0-alpha9</lb.version>  -->
-        <lb.version>1.5.12</lb.version>
-        <slf4j.version>2.0.16</slf4j.version>
+        <lb.version>1.5.33</lb.version>
+        <slf4j.version>2.0.17</slf4j.version>
         <!--<reloadj.version>1.2.20-SNAPSHOT</reloadj.version> -->
         <reloadj.version>1.2.26</reloadj.version>
         <log4j2.version>2.17.2</log4j2.version>
+
+        <junit.version>5.9.1</junit.version>
         <java.compiler.plugin>3.13.0</java.compiler.plugin>
+        <maven-shade-plugin.version>3.6.2</maven-shade-plugin.version>
     </properties>
 
     <dependencies>
@@ -35,7 +38,6 @@
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-generator-annprocess</artifactId>
             <version>${jmh.version}</version>
-            <scope>provided</scope>
         </dependency>
 
 
@@ -77,11 +79,17 @@
         </dependency>
 
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>org.apache.logging.log4j</groupId>-->
+<!--            <artifactId>log4j-jpl</artifactId>-->
+<!--            <version>${log4j2.version}</version>   &lt;!&ndash; or match your other Log4j2 version &ndash;&gt;-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
 
     </dependencies>
 
@@ -94,13 +102,20 @@
                 <version>${java.compiler.plugin}</version>
                 <configuration>
                     <release>${jdk.target}</release>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.openjdk.jmh</groupId>
+                            <artifactId>jmh-generator-annprocess</artifactId>
+                            <version>${jmh.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>2.2</version>
+                <version>${maven-shade-plugin.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>

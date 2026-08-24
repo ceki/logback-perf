@@ -14,8 +14,9 @@
 	<Appenders>
 
 		<RandomAccessFile name="RandomAccessFile"
-			fileName="target/test-output/log4j2-perf.log" immediateFlush="false"
-			append="false">
+			fileName="${perfTarget:-target/test-output/}log4j2-perf.log"
+						  immediateFlush="false"
+						  append="false">
 			<PatternLayout>
 				<Pattern>%d %p [%t] %logger - %m%n</Pattern>
 			</PatternLayout>
