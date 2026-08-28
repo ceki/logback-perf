@@ -68,6 +68,12 @@
         </dependency>
 
         <dependency>
+            <groupId>ch.qos.steward</groupId>
+            <artifactId>steward-core-stream</artifactId>
+            <version>${steward.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>ch.qos.reload4j</groupId>
             <artifactId>reload4j</artifactId>
             <version>${reloadj.version}</version>

@@ -28,6 +28,7 @@
         <immediateFlush>false</immediateFlush>
         <append>false</append>
         <encoder class="KryoEncoder">
+<!--            <serializerType>Vanilla</serializerType>-->
             <serializerType>Custom</serializerType>
             <streamVersion>4</streamVersion>
         </encoder>
