@@ -29,14 +29,14 @@ echo "Results will be output into file results-${DATE}-[threadCount].txt"
 sleep 1
 
 DATE=$(date  '+%Y-%m-%dT%H%M')
-#PERF_TARGET=/tmp/perf-target/
-PERF_TARGET=/mnt/ramdisk/perf-target/
+PERF_TARGET=/tmp/perf-target/
+#PERF_TARGET=/mnt/ramdisk/perf-target/
 
 $MVN clean
 $MVN install
 
 #for TC in 1 2 4 8 16 32 64;
-for TC in 1;          
+for TC in 4;
 do
     echo "Number of threads $TC"
     #

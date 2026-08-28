@@ -26,17 +26,17 @@ import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
-import org.openjdk.jmh.annotations.TearDown;
 import org.openjdk.jmh.annotations.Warmup;
-import org.slf4j.LoggerFactory;
 
 import static ch.qos.steward.core.stream.StewardCoreConstants.KRYO_UNSAFE_PROPERTY_KEY;
 
 /**
  * Benchmarks Logback FileAppender writing Kryo-encoded events to disk via
  * {@code ch.qos.steward.classic.stream.KryoEncoder}.
+ *
+ * Extends {@link FileAppenderBenchmark}: {@link #kryoEncoderFile} is the Kryo
+ * counterpart of {@link #enhancedLogbackToFile()}.
  *
  * IMPORTANT FOR LOW VARIANCE RESULTS:
  * - This benchmark is I/O bound. On a rotating hard disk (HDD), kernel
@@ -47,10 +47,10 @@ import static ch.qos.steward.core.stream.StewardCoreConstants.KRYO_UNSAFE_PROPER
  *     -DperfTarget=/dev/shm/perf-target/
  */
 // HOW TO RUN THIS TEST (recommended parameters for lower variance)
-// java -jar target/benchmarks.jar ".*KryoEncoderToFileBenchmark.*" -f 5 -wi 5 -i 10 -r 10 -w 10 -tu ms -t 1
+// java -jar target/benchmarks.jar "ch.qos.logback.perf.KryoEncoderToFileBenchmark.kryoEncoderFile" -f 5 -wi 5 -i 10 -r 10 -w 10 -tu ms -t 1
 //
 // With more threads:
-// java -jar target/benchmarks.jar ".*KryoEncoderToFileBenchmark.*" -f 5 -wi 5 -i 10 -r 10 -w 10 -tu ms -t 4
+// java -jar target/benchmarks.jar "ch.qos.logback.perf.KryoEncoderToFileBenchmark.kryoEncoderFile" -f 5 -wi 5 -i 10 -r 10 -w 10 -tu ms -t 4
 
 @State(Scope.Benchmark)
 @Fork(value = 3)
@@ -58,57 +58,43 @@ import static ch.qos.steward.core.stream.StewardCoreConstants.KRYO_UNSAFE_PROPER
 @Measurement(iterations = 3, time = 3, timeUnit = TimeUnit.SECONDS)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-public class KryoEncoderToFileBenchmark {
-    public static final String MESSAGE = "This is a debug message";
-    public static String KRYO_FILE_PATH = "target/test-output/kryo-encoder-perf.kryo";
+public class KryoEncoderToFileBenchmark extends FileAppenderBenchmark {
 
-    public static final String PERF_TARGET_KEY = "perfTarget";
-    public static final String PERF_TARGET_DEFAULT_VALUE = "target/test-output/";
-    org.slf4j.Logger slf4jLogger;
-
-    @Setup
-    public void setUp() throws Exception {
-
-        String perfTarget = System.getProperty(PERF_TARGET_KEY);
-        if (perfTarget == null || perfTarget.trim().isEmpty()) {
-            System.out.printf("System property '%s' is not set or empty. Using default value: '%s'%n", PERF_TARGET_KEY, PERF_TARGET_DEFAULT_VALUE);
-            System.setProperty(PERF_TARGET_KEY, PERF_TARGET_DEFAULT_VALUE);
-            perfTarget = System.getProperty(PERF_TARGET_KEY);
-        }
-
-        System.setProperty(KRYO_UNSAFE_PROPERTY_KEY, "false");
-        System.setProperty("logback.configurationFile", "logback-kryo-perf.xml");
-
-        KRYO_FILE_PATH = perfTarget + "kryo-encoder-perf.kryo";
-
-        deleteLogFiles();
-
-        String loggerName = "ch.qos.logback.perf.KryoEncoderToFileBenchmark";
-        slf4jLogger = LoggerFactory.getLogger(loggerName);
+    @Override
+    protected String logbackConfigurationFile() {
+        return "logback-kryo-perf.xml";
     }
 
-    @TearDown
-    public void tearDown() {
+    @Override
+    protected String logbackOutputFileName() {
+        return "kryo-encoder-perf.kryo";
+    }
+
+    @Override
+    protected void configureLoggingFrameworks() {
+        System.setProperty(KRYO_UNSAFE_PROPERTY_KEY, "false");
+        System.setProperty("logback.configurationFile", logbackConfigurationFile());
+    }
+
+    @Override
+    protected void clearFrameworkProperties() {
         System.clearProperty("logback.configurationFile");
         System.clearProperty(KRYO_UNSAFE_PROPERTY_KEY);
-
-        deleteLogFiles();
     }
 
-    private void deleteLogFiles() {
-        final File kryoFile = new File(KRYO_FILE_PATH);
-
+    @Override
+    protected void deleteLogFiles() {
+        final File kryoFile = new File(LOGBACK_FILE_PATH);
         long kryoFileLen = kryoFile.length();
-
         if (kryoFile.delete()) {
             System.out.println("Deleted kryo file: " + kryoFile.getAbsolutePath() + " of length " + kryoFileLen);
         }
     }
 
-    @BenchmarkMode(Mode.Throughput)
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    @Benchmark
-    public void kryoEncoderFile() {
-        slf4jLogger.debug(MESSAGE);
-    }
+//    @BenchmarkMode(Mode.Throughput)
+//    @OutputTimeUnit(TimeUnit.MILLISECONDS)
+//    @Benchmark
+//    public void kryoEncoderFile(ThreadState ts) {
+//        logEnhanced(ts);
+//    }
 }

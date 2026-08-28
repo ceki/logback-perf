@@ -36,9 +36,9 @@ $MVN clean
 $MVN install
 
 #for TC in 1 2 4 8 16 32 64;
-for TC in 1 8;
+for TC in 4;
 do
-    echo "Number of threads $TC"
+    echo "=========== Number of threads $TC ====================="
     #
     # IMPORTANT: The parameters below are chosen to reduce variance.
     # - Multiple forks (-f 5) + real warm-up are essential for stable JMH results.
